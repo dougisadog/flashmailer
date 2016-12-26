@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DevInfor>
+
+    <ShareSDK AppKey="166bec058b2e0" />
+
+    <!-- 老版本 -->
+    <!--
+        AppId="wx67e33b37a345a19c"
+        AppSecret="621fa3823565cf20faea5e08b87df271"
+    -->
+
+    <Wechat
+        AppId="wx4c7b9136a464cb97"
+        AppSecret="ad2b58254776cbe2ebf3b64950e68d96"
+        BypassApproval="false"
+        Enable="true"
+        Id="1"
+        SortId="1" />
+
+    <WechatMoments
+        AppId="wx4c7b9136a464cb97"
+        AppSecret="ad2b58254776cbe2ebf3b64950e68d96"
+        BypassApproval="false"
+        Enable="true"
+        Id="2"
+        SortId="2" />
+
+    <!--
+         <WechatFavorite
+        AppId="wxa56094dd0918fb6b"
+        AppSecret="c386cee951b9203d7c007fac1f96092a"
+        Enable="true"
+        Id="3"
+        SortId="3" />
+    -->
+
+
+    <!--
+             AppKey="1736434024"
+        AppSecret="30ff660be0d425459be2bf1c55308650"
+    -->
+
+    <!-- ShareByAppClient标识是否使用微博客户端分享，默认是false -->
+
+    <SinaWeibo
+        AppKey="2783364746"
+        AppSecret="5a18601bb6411edc097ac5bb64f00fb5"
+        Enable="true"
+        Id="4"
+        RedirectUrl="http://www.xiaomanjf.com"
+        ShareByAppClient="true"
+        SortId="4" />
+
+</DevInfor>

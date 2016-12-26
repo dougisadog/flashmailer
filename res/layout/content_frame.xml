@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:orientation="vertical" >
+
+ <LinearLayout
+        android:id="@+id/headLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/header" />
+    </LinearLayout>
+    
+     <com.nangua.xiaomanjflc.widget.TitleTab
+        android:id="@+id/mytab"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:background = "@color/white">
+        </com.nangua.xiaomanjflc.widget.TitleTab>
+
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <!-- 定义一个虚拟的视图，方便Fragment能够替换该视图，以达到Fragment的视图内容能够显示在屏幕上的效果。 -->
+
+</LinearLayout>

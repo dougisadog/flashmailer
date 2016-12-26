@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/headLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/skyblue" >
+
+            <FrameLayout
+                android:id="@+id/flleft"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:drawablePadding="5dp" >
+
+                <TextView
+                    android:id="@+id/title_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/back"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_title"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/img_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/account_idcard" />
+            </FrameLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlright"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/city"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/account_hand" />
+
+                <TextView
+                    android:id="@+id/city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="大连市"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_title" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/title_center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="跑男"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_title_new" />
+
+            <ImageView
+                android:id="@+id/title_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/logo"
+                android:visibility="invisible" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/mainAD"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:src="@drawable/safe_02" />
+
+    <LinearLayout
+        android:id="@+id/llFrom"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_btn_dialog"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/account_bankcard" />
+
+        <TextView
+            android:id="@+id/txtFrom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:text="物品从哪发" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llFrom"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_btn_dialog"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/account_bankcard" />
+
+        <TextView
+            android:id="@+id/txtTo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:text="物品寄到哪里去" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/bg_btn_dialog" >
+
+        <ImageView
+            android:id="@+id/minus"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/skyblue_editpage_image_remove" />
+
+        <TextView
+            android:id="@+id/txtWeight"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="五公斤以下" />
+
+        <ImageView
+            android:id="@+id/plus"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/skyblue_platform_checked" />
+    </LinearLayout>
+    
+    <TextView 
+        android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="取件时间"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/font_hint_small_v2"/>
+    
+        <TextView 
+            android:id="@+id/orderTime"
+        	android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="立即取件"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/font_num_v2"/>
+
+</LinearLayout>

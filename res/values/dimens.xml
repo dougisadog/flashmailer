@@ -1,0 +1,59 @@
+<resources>
+
+    <dimen name="font_num">18sp</dimen>  <!-- app数字大小 -->
+    <dimen name="font_title">16sp</dimen>  <!-- app标题文字大小 -->
+    <dimen name="font_title_new">20sp</dimen>  <!-- app标题文字大小 -->
+    <dimen name="font_app">14sp</dimen>  <!-- app文字大小 -->
+    <dimen name="font_hint">12sp</dimen>  <!-- app提示文字大小 -->
+    <dimen name="font_hint_small">10sp</dimen>  <!-- app提示文字大小 -->
+    <dimen name="font_huge">34sp</dimen>  <!-- app巨大文字 -->
+    <dimen name="font_small">10sp</dimen>
+    
+    <dimen name="font_tab_margin">40dp</dimen> 
+     <dimen name="font_img_width">24dp</dimen> 
+     <dimen name="btn_margin">5dp</dimen>   
+    <dimen name="page_small">5dp</dimen>  
+    <dimen name="page_left">10dp</dimen>  <!-- 总页面左padding -->
+    <dimen name="page_right">10dp</dimen>  <!-- 总页面右padding -->
+    <dimen name="page_left_new">15dp</dimen>  <!-- 总页面左padding -->
+    <dimen name="page_right_new">15dp</dimen>  <!-- 总页面右padding -->
+    <dimen name="page_top">10dp</dimen>  <!-- 总页面上padding -->
+    <dimen name="page_bottom">10dp</dimen>  <!-- 总页面下padding -->
+    <dimen name="page_drawable">10dp</dimen>  <!-- 总页面textview文字和图片间隔 -->
+    <dimen name="page_line">10dp</dimen>  <!-- 总页面控件间上下间隔 -->
+    <dimen name="page_line_btn">30dp</dimen>  <!-- 总页面控件间上下间隔 -->
+    
+    <dimen name="text_line">5dp</dimen>  <!-- textview控件文字与底部间隔 -->
+    <dimen name="text_drawable">5dp</dimen>  <!-- 总页面textview文字和图片间隔 -->
+    <dimen name="text_drawable_account">10dp</dimen>  <!-- 总页面textview文字和图片间隔 -->
+
+    <dimen name="item_small">2dp</dimen>  <!-- listview内容之间的间隔 -->
+    
+    <dimen name="account_red_box">20dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>  <!-- 账户红色box -->
+    
+    <dimen name="shadow_width">15dp</dimen>
+    <dimen name="slidingmenu_offset">200dp</dimen>
+    
+    <!-- v2 -->
+    <dimen name="font_num_v2">18sp</dimen>  <!-- app数字大小 -->
+    <dimen name="font_title_v2">16sp</dimen>  <!-- app标题文字大小 -->
+    <dimen name="font_title_new_v2">20sp</dimen>  <!-- app标题文字大小 -->
+    <dimen name="font_app_v2">14sp</dimen>  <!-- app文字大小 -->
+    <dimen name="font_hint_v2">12sp</dimen>  <!-- app提示文字大小 -->
+    <dimen name="font_hint_small_v2">10sp</dimen>  <!-- app提示文字大小 -->
+    <dimen name="font_huge_v2">34sp</dimen>  <!-- app巨大文字 -->
+    <dimen name="font_small_v2">10sp</dimen>
+    
+    <dimen name="text_line_v2">7dp</dimen>  <!-- textview控件文字与底部间隔 -->
+    <dimen name="text_small_line_v2">2dp</dimen>  <!-- textview控件文字与底部间隔 -->
+     <dimen name="page_left_v2">20dp</dimen>  <!-- 总页面左padding -->
+    <dimen name="page_right_v2">20dp</dimen>  <!-- 总页面右padding -->
+    <dimen name="page_top_v2">15dp</dimen>  <!-- 总页面上padding -->
+    <dimen name="page_bottom_v2">15dp</dimen>  <!-- 总页面下padding -->
+    <dimen name="text_top_v2">5dp</dimen>  <!-- 文字上padding -->
+    <dimen name="text_bottom_v2">5dp</dimen>  <!-- 文字下padding -->
+
+</resources>

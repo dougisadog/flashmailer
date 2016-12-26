@@ -1,0 +1,7 @@
+<com.doug.component.widget.WrapListView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:divider="@color/blue_v2"
+    android:dividerHeight="1dp" />

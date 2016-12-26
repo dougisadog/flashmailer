@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="appointDate">
+        <item>今天</item>
+        <item>明天</item>
+    </string-array>
+    <string-array name="appointHour">
+        <item>00</item>
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+    </string-array>
+    <string-array name="appointMinute">
+        <item>00</item>
+        <item>05</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+        <item>35</item>
+        <item>40</item>
+        <item>45</item>
+        <item>50</item>
+        <item>55</item>
+    </string-array>
+    <string-array name="orderWeight">
+        <item>5公斤以下</item>
+        <item>6公斤</item>
+        <item>7公斤</item>
+        <item>8公斤</item>
+        <item>9公斤</item>
+        <item>10公斤以上</item>
+    </string-array>
+    <string-array name="areas">
+        <item>长海县</item>
+        <item>甘井子区</item>
+        <item>金州区</item>
+        <item>旅顺口区</item>
+        <item>普兰店市</item>
+        <item>沙河口区</item>
+        <item>瓦房店市</item>
+        <item>西岗区</item>
+        <item>中山区</item>
+        <item>庄河市</item>
+        <item>其他</item>
+    </string-array>
+
+</resources>

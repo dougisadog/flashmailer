@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white" >
+
+    <!-- 显示头部标题 -->
+
+    <LinearLayout
+        android:id="@+id/headLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/header" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headLinear"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/page_left_new"
+        android:paddingRight="@dimen/page_right_new" >
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/white"
+            android:paddingLeft="20dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp" >
+
+            <EditText
+                android:id="@+id/tel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="@string/sign_tel_hint"
+                android:inputType="number"
+                android:maxLength="11"
+                android:singleLine="true"
+                android:textColor="@color/font_gray_man"
+                android:textColorHint="@color/font_hint"
+                android:textSize="@dimen/font_hint_v2" />
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/white"
+            android:paddingLeft="20dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp" >
+
+            <EditText
+                android:id="@+id/pwd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="@string/sign_up_pwd_hint"
+                android:inputType="textPassword"
+                android:maxLength="11"
+                android:singleLine="true"
+                android:textColor="@color/font_gray_man"
+                android:textColorHint="@color/font_hint"
+                android:textSize="@dimen/font_hint_v2" />
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/white"
+            android:paddingLeft="20dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp" >
+
+            <EditText
+                android:id="@+id/pwdconfirm"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="@string/sign_up_confirm_pwd_hint"
+                android:inputType="textPassword"
+                android:maxLength="11"
+                android:singleLine="true"
+                android:textColor="@color/font_gray_man"
+                android:textColorHint="@color/font_hint"
+                android:textSize="@dimen/font_hint_v2" />
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:background="@color/white"
+            android:paddingLeft="20dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp" >
+
+            <EditText
+                android:id="@+id/tel_verify"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="@string/sign_tel_verify_hint"
+                android:inputType="number"
+                android:maxLength="11"
+                android:singleLine="true"
+                android:textColor="@color/font_gray_man"
+                android:textColorHint="@color/font_hint"
+                android:textSize="@dimen/font_hint_v2" />
+
+            <TextView
+                android:id="@+id/code"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="2dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/btn_blue"
+                android:gravity="center"
+                android:text="@string/sign_code"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_hint_v2" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/verify1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <EditText
+                android:id="@+id/verification"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/page_line"
+                android:layout_weight="3"
+                android:background="@null"
+                android:drawableLeft="@drawable/sign_verify"
+                android:drawablePadding="@dimen/page_drawable"
+                android:gravity="center_vertical"
+                android:hint="@string/sign_verify_hint"
+                android:paddingBottom="@dimen/text_line"
+                android:textColor="@color/font_gray"
+                android:textColorHint="@color/font_hint"
+                android:textSize="@dimen/font_app" />
+
+            <ImageView
+                android:id="@+id/verifyimage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:scaleType="fitXY" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/verify2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@drawable/sign_padding" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/page_drawable"
+                android:background="@color/font_hint" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/page_line"
+            
+            android:drawableLeft="@drawable/sign_padding"
+            android:drawablePadding="@dimen/page_drawable"
+            android:gravity="center_vertical"
+            android:text="@string/sign_hint"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/font_hint"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/page_line"
+                
+                android:gravity="center"
+                android:text="创建账户代表同意并接受小满金服的"
+                android:textColor="@color/font_gray"
+                android:textSize="@dimen/font_hint" />
+
+            <TextView
+                android:id="@+id/protocol"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                
+                android:gravity="center|bottom"
+                android:text="@string/sign_protocol"
+                android:textColor="@color/blue_v2"
+                android:textSize="@dimen/font_hint" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/signup"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/page_line_btn"
+            android:layout_marginLeft = "20dp"
+            android:layout_marginRight = "20dp"
+            
+            android:background="@drawable/btn_blue"
+            android:gravity="center"
+            android:text="@string/signup"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_app" />
+    </LinearLayout>
+
+</RelativeLayout>

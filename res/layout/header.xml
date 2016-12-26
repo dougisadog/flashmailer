@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/white" >
+    
+        <FrameLayout
+            android:id="@+id/flleft"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:drawablePadding="5dp" >
+
+       <TextView
+        android:id="@+id/title_left"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/back"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_title"
+        android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/img_left"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            android:src="@drawable/header_back_v2" />
+    </FrameLayout>
+
+    
+
+    <FrameLayout
+        android:id="@+id/flright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp" >
+
+        <TextView
+            android:id="@+id/title_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_title"
+             />
+
+        <ImageView
+            android:id="@+id/img_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            android:visibility="invisible" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/title_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_title" />
+
+    <ImageView
+        android:id="@+id/title_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/logo"
+        android:visibility="invisible" />
+
+</RelativeLayout>

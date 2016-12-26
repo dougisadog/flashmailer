@@ -1,0 +1,74 @@
+<resources>
+
+    <string name="test">这是一个测试。。</string>
+    <string name="app_name">表情助手</string>
+    <string name="dialog_title">温馨提示</string>
+    <string name="dialog_confirm">确定</string>
+    <string name="back">返回</string>
+    <string name="home_v2">首页</string>
+    <string name="more">更多</string>
+    <string name="signin">登录</string>
+    <string name="signout">退出登录</string>
+    <string name="signup">注册</string>
+    <string name="charge">充值</string>
+    <string name="cash">提现</string>
+    <string name="confirm">确定</string>
+    <string name="sign_tel_hint">填写手机号码</string>
+    <string name="sign_tel_hint_new">输入绑定手机号码</string>
+    <string name="sign_tel_verify_hint">短信验证码</string>
+    <string name="sign_pwd_hint">填写登录密码</string>
+    <string name="new_pwd_hint">新密码为8个以上字母、数字和符号的组合</string>
+    <string name="new_confirm_pwd_hint">再次输入新密码</string>
+    <string name="sign_up_pwd_hint">密码为8个以上字母、数字和符号的组合</string>
+    <string name="sign_up_confirm_pwd_hint">再次输入密码</string>
+    <string name="sign_verify_hint">输入验证码</string>
+    <string name="sign_hint_err">输入的手机号和密码有误！</string>
+    <string name="sign_hint">请先填写完整信息！</string>
+    <string name="sign_lose">忘记密码？</string>
+    <string name="sign_protocol"><u>注册协议</u></string>
+    <string name="sign_code">获取验证码</string>
+    <string name="signup_code">请先输入11位电话号码。</string>
+    <string name="signup_hascode">请先获取短信验证码！</string>
+    <string name="signup_code_success">验证码发送成功，请注意查收。</string>
+    <string name="account_pwd">修改登录密码</string>
+    <string name="username_hint">用户名输入</string>
+    <string name="username_add">用户名设置成功后将不能够进行修改！</string>
+    <string name="idcard_name">请输入真实姓名</string>
+    <string name="idcard_id">请填写18位身份证号码</string>
+    <string name="pwd_old">输入旧登录密码</string>
+    <string name="pwd_new">输入新登录密码</string>
+    <string name="pwd_confirm">再次输入新登录密码</string>
+    
+    <!-- hint -->
+    <string name="lesat_charge_amount">充值最低100元起</string>
+    <string name="report_hint">再次留下您的宝贵意见和建议</string>
+    <string name="btn_submit">提交</string>
+    <string name="title_activity_find_pwd">FindPwd</string>
+    <string name="title_activity_find_pwd_two">FindPwdTwoActivity</string>
+    <string name="title_activity_normal_invite">NormalInviteActivity</string>
+    <string name="title_activity_yan_invite">YanInviteActivity</string>
+    <string name="title_activity_invite_list">InviteListActivity</string>
+    <string name="title_activity_verify_pwd">VerifyPwd</string>
+        <!-- dialog -->
+    <string name="txtDialogCancelEn">Cancel</string>
+    <string name="txtDialogCancelCn">(取消)</string>
+    <string name="txtDialogSubmitEn">OK</string>
+    <string name="txtDialogSubmitCn">(确认)</string>
+    <string name="txtDialogYesEn">Yes</string>
+    <string name="txtDialogYesCn">(好)</string>
+    <string name="txtDialogNoEn">No</string>
+    <string name="txtDialogNoCn">(不)</string>
+    <string name="txtDialogRestartEn">Restart</string>
+    <string name="txtDialogRestartCn">(重新开始)</string>
+	<string name="txtDialogClose">关闭</string>
+    
+        <!-- system -->
+    <string name="timeout">网络存在问题，请稍后重试</string>
+    <string name="unknown_error_error_code">未知错误，错误代码</string>
+    <string name="sd_card_in_not_mounted">请加成您的SD卡是否有插入</string>
+    <string name="lessonResConfigErr">课程资源出错，正在为您修复，请稍后.</string>
+    <string name="something_error">发生故障</string>
+    <string name="please_deleted_cache_dir">权限出错，无法读取存储空间</string>
+	<string name="ok">确定</string>
+	
+</resources>
