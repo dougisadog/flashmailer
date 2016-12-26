@@ -8,6 +8,7 @@ import java.util.TimerTask;
 
 import com.bumptech.glide.Glide;
 import com.doug.component.adapter.ImageGridAdapter;
+import com.doug.component.adapter.ImageGridAdapter.ItemCallBack;
 import com.doug.component.bean.CItem;
 import com.doug.component.bean.MainAD;
 import com.doug.component.cache.CacheBean;
@@ -60,7 +61,16 @@ public class AtyCity extends KJActivity implements OnClickListener {
 //			}
 //
 //		});
-		mCity.setAdapter(new ImageGridAdapter(this, cities));
+		ImageGridAdapter adapter = new ImageGridAdapter(this, cities);
+		adapter.setItemCallBack(new ItemCallBack() {
+			
+			@Override
+			public void onItemClick(int position, CItem item) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		mCity.setAdapter(adapter);
     }
     
 

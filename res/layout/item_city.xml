@@ -8,6 +8,7 @@
         android:id="@+id/item"
          android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/bg_dialog_ios"
         android:orientation="vertical">
      
    
@@ -20,7 +21,7 @@
         android:layout_weight="1"
         android:scaleType="fitCenter"
         android:src="@drawable/empty"
-        android:visibility="visible" />
+        android:visibility="gone" />
     
      <TextView
         android:id="@+id/tabName"

@@ -67,7 +67,7 @@ public class ImageGridAdapter extends BaseAdapter {
           
         if (convertView == null)  
         {  
-            convertView = mInflater.inflate(R.layout.item_biaoqing, null);  
+            convertView = mInflater.inflate(R.layout.item_city, null);  
             convertView.setLayoutParams(params);
             // construct an item tag   
             viewTag = new ItemViewTag((ImageView) convertView.findViewById(R.id.tabImg), (TextView) convertView.findViewById(R.id.tabName));  
