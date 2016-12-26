@@ -3,7 +3,9 @@ package com.doug;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.doug.component.error.ErrLogManager;
+import com.doug.component.service.LocationService;
 import com.doug.component.support.AppActivityLifecycleCallbacks;
 import com.doug.component.support.CrashHandler;
 import com.doug.component.support.ScreenObserver;
@@ -12,21 +14,29 @@ import com.louding.frame.ui.AnnotateUtil;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
+import android.app.Service;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Vibrator;
 import android.webkit.WebView;
 import android.widget.Toast;
 
 @SuppressLint("NewApi")
 public class FlashApplication extends Application {
 
+	public LocationService locationService;
+    public Vibrator mVibrator;
 
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		CrashHandler crashHandler = CrashHandler.getInstance();
 		crashHandler.init(getApplicationContext());
+		
+        locationService = new LocationService(getApplicationContext());
+        mVibrator =(Vibrator)getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
+        SDKInitializer.initialize(getApplicationContext()); 
 
 		instance = this;
 		ErrLogManager.registerHandler();

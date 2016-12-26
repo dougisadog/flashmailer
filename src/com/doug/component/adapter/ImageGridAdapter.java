@@ -40,8 +40,8 @@ public class ImageGridAdapter extends BaseAdapter {
         mContext = context;  
         mInflater = LayoutInflater.from(context);  
           
-        int h = DensityUtils.dip2px(context, 100);
-        params = new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, h);  
+//        int h = DensityUtils.dip2px(context, 100);
+//        params = new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, h);  
     } 
     
     public void setDatas(List<CItem> mNameList) {

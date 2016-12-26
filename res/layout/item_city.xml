@@ -8,7 +8,7 @@
         android:id="@+id/item"
          android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_dialog_ios"
+         android:background="@drawable/bg_btn_dialog"
         android:orientation="vertical">
      
    

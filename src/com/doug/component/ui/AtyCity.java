@@ -43,8 +43,7 @@ import android.widget.TextView;
  */
 public class AtyCity extends KJActivity implements OnClickListener {
 	
-	private PullToRefreshGridView mCity;
-	private boolean isRefreshing = false;
+	private GridView mCity;
 	private List<CItem> cities;
 
     @Override
@@ -52,21 +51,15 @@ public class AtyCity extends KJActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city);
         init();
-		mCity = (PullToRefreshGridView) findViewById(R.id.emoji);
-		mCity.setMode(Mode.DISABLED);
-//		emoji.setOnRefreshListener(new OnRefreshListener<GridView>() {
-//
-//			@Override
-//			public void onRefresh(PullToRefreshBase<GridView> refreshView) {
-//			}
-//
-//		});
+		mCity = (GridView) findViewById(R.id.emoji);
 		ImageGridAdapter adapter = new ImageGridAdapter(this, cities);
 		adapter.setItemCallBack(new ItemCallBack() {
 			
 			@Override
 			public void onItemClick(int position, CItem item) {
-				// TODO Auto-generated method stub
+				Intent i = getIntent();
+				i.putExtra("city", item.getValue());
+				setResult(10000, i);
 				
 			}
 		});

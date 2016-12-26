@@ -3,11 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <com.handmark.pulltorefresh.library.PullToRefreshGridView
+    <GridView
         android:id="@+id/emoji"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/limitTimeTitle"
         android:horizontalSpacing="10dp"
         android:numColumns="3"
         android:stretchMode="columnWidth"

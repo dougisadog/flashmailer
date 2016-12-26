@@ -1,5 +1,6 @@
 package com.doug.component.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,6 +39,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 import com.louding.frame.KJDB;
 import com.louding.frame.KJHttp;
 import com.louding.frame.http.HttpCallBack;
+import com.louding.frame.utils.StringUtils;
 
 public class MainActivity extends MenuActivity {
 
@@ -45,13 +48,16 @@ public class MainActivity extends MenuActivity {
 
 	public static final int REQUEST_CODE = 10001;
 	
-	private TextView city, txtWeight, orderTime;
+	private TextView city, txtWeight, orderTime, txtFrom, txtTo;
 	private ImageView plus,minus;
 	
 	private DialogOrderTimeFragment dialogWheel;
 	
 	private String[] orderWeight;
 	private int currentWeightIndex = 0;
+	
+	private LinearLayout llFrom, llTo;
+	
 
 	@Override
 	protected void initData() {
@@ -74,6 +80,15 @@ public class MainActivity extends MenuActivity {
 		minus.setOnClickListener(listener);
 		orderTime = (TextView) findViewById(R.id.orderTime);
 		orderTime.setOnClickListener(listener);
+		
+		llFrom = (LinearLayout) findViewById(R.id.llFrom);
+		llFrom.setOnClickListener(listener);
+		llTo = (LinearLayout) findViewById(R.id.llTo);
+		llTo.setOnClickListener(listener);
+		
+		txtFrom = (TextView) findViewById(R.id.txtFrom);
+		txtTo = (TextView) findViewById(R.id.txtTo);
+		
 		
 		orderWeight = getResources().getStringArray(R.array.orderWeight);
 	}
@@ -98,9 +113,16 @@ public class MainActivity extends MenuActivity {
 		public void onClick(View v) {
 			KeyboardUitls.hideKeyboard(MainActivity.this);
 			switch (v.getId()) {
+				case R.id.llFrom : //起始
+					startActivityForResult(new Intent(MainActivity.this, AtyLocationSearch.class),  999);
+					break;
+				case R.id.llTo : //终止
+					startActivityForResult(new Intent(MainActivity.this, AtyLocationSearch.class),  998);
+					break;
 				case R.id.img_left : //左拉
 					break;
 				case R.id.rlright : //选城市
+					startActivityForResult(new Intent(MainActivity.this, AtyCity.class),  1000);
 					break;
 				case R.id.mainAD :  //广告
 					break;
@@ -166,6 +188,39 @@ public class MainActivity extends MenuActivity {
 			else { // 两次按键小于2秒时，退出应用
 				finish();
 			}
+	}
+	
+	
+
+	@Override
+	protected void onActivityResult(int req, int res, Intent intent) {
+		switch (req) {
+		case 1000:
+			String cityName = intent.getStringExtra("city");
+			if (!StringUtils.isEmpty(cityName)) {
+				city.setText(cityName);
+			}
+			break;
+		case 999:
+			String from = intent.getStringExtra("finalResult");
+			if (!StringUtils.isEmpty(from)) {
+				txtFrom.setText(from);
+			}
+			break;
+		case 998:
+			String to = intent.getStringExtra("finalResult");
+			if (!StringUtils.isEmpty(to)) {
+				txtTo.setText(to);
+			}
+			break;
+			
+
+		default:
+			break;
+		}
+		
+		// TODO Auto-generated method stub
+		super.onActivityResult(req, res, intent);
 	}
 
 	@Override
