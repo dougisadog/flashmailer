@@ -23,6 +23,11 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="com.xiaomi.market.sdk.UPDATE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name="com.doug.FlashApplication"
@@ -54,6 +59,13 @@
             android:launchMode="standard"
             android:screenOrientation="portrait" >
         </activity>
+                <activity
+            android:name="com.doug.component.ui.InvestActivity"
+            android:launchMode="standard"
+            android:screenOrientation="portrait" >
+        </activity>
+        
+        
         <activity
             android:name="com.doug.component.ui.AtyLocationSearch"
             android:launchMode="standard"
@@ -148,17 +160,31 @@
             </intent-filter>
         </receiver>
         <!-- 自动更新 -->
-<!--     YYB  -->
+        <!-- YYB -->
         <service
             android:name="com.tencent.tmdownloader.TMAssistantDownloadService"
             android:exported="false"
             android:process=":TMAssistantDownloadSDKService" />
-<!--     xiaomi  -->
+        <!-- xiaomi -->
         <receiver android:name="com.xiaomi.market.sdk.DownloadCompleteReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
             </intent-filter>
         </receiver>
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" >
+            <intent-filter>
+                <action android:name="com.baidu.location.service_v2.2" >
+                </action>
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="lES8YVHwbe4oUcRvXEie6SKugvGpZVfg" />
     </application>
 
 </manifest>

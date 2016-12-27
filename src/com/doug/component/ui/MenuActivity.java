@@ -11,6 +11,7 @@ import com.yanshang.yilicai.lib.app.SlidingFragmentActivity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -96,6 +97,7 @@ public class MenuActivity extends SlidingFragmentActivity implements ScreenState
 		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		
 		initData();
+		initRequestData();
     }
     
     public void setTouchEnabled(boolean enabled) {
@@ -106,18 +108,28 @@ public class MenuActivity extends SlidingFragmentActivity implements ScreenState
 		
 		@Override
 		public void onClick(View v) {
+			Intent i = new Intent(MenuActivity.this, InvestActivity.class);
 			switch (v.getId()) {
 				case R.id.accountDetail: //个人资料
 					break;
 				case R.id.news: //消息
 					break;
 				case R.id.orders: //订单信息
+					
+					i.putExtra("type", 0);
+					startActivity(i);
 					break;
 				case R.id.rlOrder1: //待抢单
+					i.putExtra("type", 1);
+					startActivity(i);
 					break;
 				case R.id.rlOrder2: //闪送中
+					i.putExtra("type", 2);
+					startActivity(i);
 					break;
 				case R.id.rlOrder3: //待评价
+					i.putExtra("type", 3);
+					startActivity(i);
 					break;
 				case R.id.transDetail: //订单信息
 					break;

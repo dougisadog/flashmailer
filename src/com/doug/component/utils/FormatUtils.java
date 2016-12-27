@@ -157,5 +157,14 @@ public class FormatUtils {
 		return result;
 		
 	}
+	
+	/**
+	 * 将以.00结尾的数字变为整数
+	 */
+	public static String getSimpleNum(String num) {
+		if (num.endsWith(".00"))
+			num = num.substring(0, num.length() - 3);
+		return num;
+	}
 
 }

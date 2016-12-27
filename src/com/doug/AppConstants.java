@@ -45,9 +45,9 @@ public class AppConstants {
 	
 	
 	//本地外网
-	public final static String HOST = "http://nangua.webok.net:9973/p2p-mapp";
-	public final static String HOST_IMAGE = "http://nangua.webok.net:9973/p2p-mapp/docroot/upload/images";
-	public final static String SPECIALHOST = "http://nangua.webok.net:9973";
+	public final static String HOST = "http://nangua.webok.net:9080/mapp";
+	public final static String HOST_IMAGE = "http://nangua.webok.net:9080/mapp/docroot/upload/images";
+	public final static String SPECIALHOST = "http://nangua.webok.net:9080";
 	
 	public final static String UBIAOQING = "http://www.ubiaoqing.com/";
 	public final static String MADAN = "http://md.itlun.cn/";
@@ -94,8 +94,24 @@ public class AppConstants {
 	 * 找回登陆密码
 	 */
 	public static final String GET_LOSE = HOST + "/findback/reset";
-
-	public static final String GET_SLIDE_IMAGE = null;
+	
+	/**
+	 * 消费
+	 */
+	public static final String INVEST_ORDER = HOST + "/findback/reset";
+	
+	/**
+	 * 充值
+	 */
+	public static final String INVEST_CHARGE = HOST + "/findback/reset";
+	
+	/**
+	 * 退款
+	 */
+	public static final String INVEST_RETURN = HOST + "/findback/reset";
+	
+	
+	public static final String GET_SLIDE_IMAGE = HOST + "/appadv";
 
 	protected static final String UPDATE = null;
 

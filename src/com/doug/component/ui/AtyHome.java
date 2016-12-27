@@ -1,46 +1,43 @@
 package com.doug.component.ui;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.bumptech.glide.Glide;
+import com.doug.AppConstants;
+import com.doug.component.bean.ADCycleItem;
+import com.doug.component.bean.CycleData;
+import com.doug.component.bean.ShopADData;
+import com.doug.component.bean.ShopADData.ShopADType;
+import com.doug.component.cache.CacheBean;
+import com.doug.component.dialog.DialogOrderTimeFragment;
+import com.doug.component.dialog.DialogOrderTimeFragment.CallBackDialogCitiesWheel;
+import com.doug.component.utils.ApplicationUtil;
+import com.doug.component.utils.KeyboardUitls;
+import com.doug.component.widget.MutiCycleViewHome;
+import com.doug.flashmailer.R;
+import com.louding.frame.KJHttp;
+import com.louding.frame.http.HttpCallBack;
+import com.louding.frame.http.HttpParams;
+import com.louding.frame.utils.StringUtils;
+
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import com.doug.component.adapter.ImageGridAdapter;
-import com.doug.component.adapter.ImagePagerAdapter;
-import com.doug.component.adapter.ImagePagerAdapter.LongClickCallBack;
-import com.doug.component.bean.CItem;
-import com.doug.component.bean.database.UserSearch;
-import com.doug.component.cache.CacheBean;
-import com.doug.component.dialog.DialogOrderTimeFragment;
-import com.doug.component.dialog.DialogOrderTimeFragment.CallBackDialogCitiesWheel;
-import com.doug.component.dialog.DialogWheelFragment;
-import com.doug.component.dialog.ImagePager;
-import com.doug.component.dialog.ImagePager.CallBackDialogConfirm;
-import com.doug.component.receiver.AppReceiver;
-import com.doug.component.support.HtmlParser;
-import com.doug.component.support.HtmlParser.ParserCallBack;
-import com.doug.component.support.UIHelper;
-import com.doug.component.utils.ImageUtils;
-import com.doug.component.utils.KeyboardUitls;
-import com.doug.component.widget.LoudingDialogIOS;
-import com.doug.flashmailer.R;
-import com.handmark.pulltorefresh.library.PullToRefreshGridView;
-import com.louding.frame.KJDB;
-import com.louding.frame.KJHttp;
-import com.louding.frame.http.HttpCallBack;
-import com.louding.frame.utils.StringUtils;
+import android.widget.ImageView.ScaleType;
 
 public class AtyHome extends MenuActivity {
 
@@ -50,7 +47,7 @@ public class AtyHome extends MenuActivity {
 	public static final int REQUEST_CODE = 10001;
 	
 	private TextView city, txtWeight, orderTime, txtFrom, txtTo;
-	private ImageView plus,minus;
+	private ImageView plus,minus, mainAD;
 	
 	private DialogOrderTimeFragment dialogWheel;
 	
@@ -58,6 +55,10 @@ public class AtyHome extends MenuActivity {
 	private int currentWeightIndex = 0;
 	
 	private LinearLayout llFrom, llTo;
+	
+	private LinearLayout adContainer;
+	private MutiCycleViewHome mcv;
+	private int adHeight;
 	
 
 	@Override
@@ -74,7 +75,7 @@ public class AtyHome extends MenuActivity {
 		findViewById(R.id.rlright).setOnClickListener(listener);
 		
 		city = (TextView) findViewById(R.id.city);
-		ImageView mainAD = (ImageView) findViewById(R.id.mainAD);
+		mainAD = (ImageView) findViewById(R.id.mainAD);
 		mainAD.setOnClickListener(listener);
 		txtWeight = (TextView) findViewById(R.id.txtWeight);
 		plus = (ImageView) findViewById(R.id.plus);
@@ -94,6 +95,16 @@ public class AtyHome extends MenuActivity {
 		
 		
 		orderWeight = getResources().getStringArray(R.array.orderWeight);
+		adContainer = (LinearLayout) findViewById(R.id.adContainer);
+		
+		int width = ApplicationUtil.getApkInfo(this).width;
+		adHeight = (int) (width /AppConstants.BANNER_SCALE);
+		LinearLayout.LayoutParams params = new   LinearLayout.LayoutParams(
+				LinearLayout.LayoutParams.MATCH_PARENT,adHeight);
+		
+		mcv = new MutiCycleViewHome(this);
+		mcv.setLayoutParams(params);
+		adContainer.addView(mcv);
 	}
 
 	@Override
@@ -101,6 +112,9 @@ public class AtyHome extends MenuActivity {
 
 		txtWeight.setText(orderWeight[0]);
 		currentWeightIndex = 0;
+		
+
+		loadCycleADDatas(mcv);
 		super.initRequestData();
 	}
 
@@ -147,7 +161,6 @@ public class AtyHome extends MenuActivity {
 					txtWeight.setText(orderWeight[currentWeightIndex]);
 					break;
 				case R.id.orderTime :   //预约时间
-					if (null == dialogWheel)
 						dialogWheel = new DialogOrderTimeFragment(new CallBackDialogCitiesWheel() {
 							
 							@Override
@@ -170,6 +183,120 @@ public class AtyHome extends MenuActivity {
 		}
 	};
 	
+	/**
+	 * 初始化轮播 控件
+	 * @param cycleView  控件view
+	 * @param cycleDatas 轮播信息
+	 */
+	private void initCycleViewData(MutiCycleViewHome cycleView, List<CycleData> cycleDatas) {
+		final List<CycleData> showCycleDatas = new ArrayList<CycleData>();
+		showCycleDatas.addAll(cycleDatas);
+		
+		cycleView.setImageResources(showCycleDatas, new MutiCycleViewHome.ImageCycleViewListener() {
+			
+			@Override
+			public void onImageClick(int position, View imageView) {
+				//根据类型执行 商品内部跳转 和外链跳转 
+				CycleData cycleData = showCycleDatas.get(position);
+	            if (cycleData.getType() == ShopADType.goods) {
+//	            	CacheShop.getInstance().setFromType(CacheShop.home_banner);
+//	            	CacheShop.getInstance().reqShopFrom(null);
+//					AtyShopListNew.startAty(AtyHomeNew.this,cycleData.getLinkUrl());
+	            }
+	            else if (cycleData.getType() == ShopADType.url) {
+	            	Intent intent = new Intent();  
+	                intent.setAction(Intent.ACTION_VIEW);  
+	                intent.addCategory(Intent.CATEGORY_BROWSABLE); 
+	            	intent.setData(Uri.parse(cycleData.getLinkUrl()));
+	            	startActivity(intent);
+	            }
+			}
+			
+			@Override
+			public void displayImage(final CycleData cycleData, final ADCycleItem adCycleItem) {
+				//TODO 修正图片显示
+				adCycleItem.getImageView().setScaleType(ScaleType.FIT_XY);
+				Glide.with(AtyHome.this).load(cycleData.getUrl()).into(adCycleItem.getImageView());
+			}
+		});
+		cycleView.startImageTimerTask();
+	} 
+	
+	/**
+	 * 获取排序队列
+	 * @param adDatas 
+	 * @return
+	 */
+	private List<CycleData> getCycleADs(List<ShopADData> adDatas) {
+		List<CycleData> shopADs = new ArrayList<CycleData>();
+		Collections.sort(adDatas, new Comparator<ShopADData>() {
+
+			@Override
+			public int compare(ShopADData lhs, ShopADData rhs) {
+				//首页广告为sortNo 从大到小排列
+//				return rhs.getSortNo().compareTo(lhs.getSortNo());
+				//首页广告为sortNo 从小到大排列
+				return lhs.getSortNo().compareTo(rhs.getSortNo());
+			}
+		});
+		shopADs.addAll(adDatas);
+		return shopADs;
+	}
+	
+	
+	/**
+	 * 拉取轮播广告
+	 * @param mcv
+	 * @param positon 0 top 1 bottom
+	 */
+	private void loadCycleADDatas(final MutiCycleViewHome mcv) {
+		List<ShopADData> ads = CacheBean.getInstance().getShopADDatas();
+		String adUrl = AppConstants.GET_SLIDE_IMAGE;
+		if (null != ads && ads.size() > 0) {
+			ads = CacheBean.getInstance().getShopADDatas();
+			initCycleViewData(mcv, getCycleADs(ads));
+			mainAD.setVisibility(View.GONE);
+			return;
+		}
+		
+			// 一步任务获取图片
+			KJHttp kjh = new KJHttp();
+			HttpParams params = new HttpParams();
+			kjh.post(adUrl, params, new HttpCallBack(this, false) {
+
+				@Override
+				public void success(JSONObject ret) {
+					try {
+						List<ShopADData> shopADDatas = new ArrayList<ShopADData>();
+						JSONArray ja = ret.getJSONArray("data");
+						for (int i = 0; i < ja.length(); i++) {
+							ShopADData ad = new ShopADData();
+							ad.setSortNo((double) i);
+							ad.setImgUrl(ja.getJSONObject(i).getJSONObject("extra")
+									.getString("img"));
+							ad.setAndroidUrl(ja.getJSONObject(i).getJSONObject("extra")
+									.getString("url"));
+							ad.setType(ShopADType.url);
+							shopADDatas.add(ad);
+						}
+//						shopADDatas.clear();
+						if (shopADDatas.size() > 0) {
+							CacheBean.getInstance().setShopADDatas(shopADDatas);
+							initCycleViewData(mcv, getCycleADs(shopADDatas));
+						}
+						else {
+							mcv.setVisibility(View.GONE);
+						}
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					super.success(ret);
+				}
+				
+			});
+		}
+	
 
 	@Override
 	protected void onResume() {
@@ -180,6 +307,7 @@ public class AtyHome extends MenuActivity {
 	protected void onPause() {
 		super.onPause();
 	}
+	
 
 	// 再按一次退出程序
 	@Override
@@ -193,7 +321,6 @@ public class AtyHome extends MenuActivity {
 				finish();
 			}
 	}
-	
 	
 
 	@Override

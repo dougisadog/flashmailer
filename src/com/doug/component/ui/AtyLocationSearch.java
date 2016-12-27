@@ -31,7 +31,7 @@ import com.baidu.mapapi.search.poi.PoiSearch;
 import com.baidu.mapapi.utils.CoordinateConverter;
 import com.baidu.mapapi.utils.DistanceUtil;
 import com.doug.FlashApplication;
-import com.doug.component.adapter.CommonAdapter;
+import com.doug.component.adapter.LocationAdapter;
 import com.doug.component.adapter.ViewHolder;
 import com.doug.component.service.LocationService;
 import com.doug.flashmailer.R;
@@ -44,6 +44,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -70,7 +72,9 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
 	private BDLocation myBDLocation;
 	private LocationService locationService;
 	
-	private CommonAdapter<PoiInfo> adapter;
+	private Marker cMaker; //当前标识
+	
+	private LocationAdapter<PoiInfo> adapter;
 	
 	private OnGetPoiSearchResultListener poiListener = new OnGetPoiSearchResultListener(){  
 	    public void onGetPoiResult(PoiResult result){
@@ -127,33 +131,44 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
         submit.setOnClickListener(this);
         
         searchResult = (ListView) findViewById(R.id.searchResult);
-        searchResult.setAdapter(new CommonAdapter<PoiInfo>(aty, R.layout.item_location_search) {
+        searchResult.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void canvas(ViewHolder holder, PoiInfo item) {
-				TextView mName = holder.getView(R.id.name);
-				TextView mLocation = holder.getView(R.id.location);
-				TextView mDistance = holder.getView(R.id.distance);
-				
-				
-				mName.setText(item.name);
-				mLocation.setText(item.address);
-				
-				LatLng my = new LatLng(myBDLocation.getLatitude(), myBDLocation.getLongitude());
-				Double d = DistanceUtil.getDistance(my, item.location);
-				mDistance.setText(d + "m");
-				
-			}
-
-			@Override
-			public void click(int id, List<PoiInfo> list, int position,
-					ViewHolder viewHolder) {
-				PoiInfo info = list.get(position);
-				setMapLating(info.location, info.address);
-				result.setText(info.address);
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
 				
 			}
 		});
+        adapter = new LocationAdapter<PoiInfo>(this, R.layout.item_search_drop) {
+
+    		@Override
+    		public void canvas(ViewHolder holder, PoiInfo item) {
+    			TextView mName = holder.getView(R.id.name);
+    			TextView mLocation = holder.getView(R.id.location);
+    			TextView mDistance = holder.getView(R.id.distance);
+    			
+    			
+    			mName.setText(item.name);
+    			mLocation.setText(item.address);
+    			
+    			LatLng my = new LatLng(myBDLocation.getLatitude(), myBDLocation.getLongitude());
+    			double d = DistanceUtil.getDistance(my, item.location)/1000;
+    			d=((int)(d*100))/100;
+    			mDistance.setText(d + "km");
+    			
+    		}
+
+    		@Override
+    		public void click(int id, List<PoiInfo> list, int position,
+    				ViewHolder viewHolder) {
+    			PoiInfo info = list.get(position);
+    			setMapLating(info.location, info.address);
+    			result.setText(info.address);
+    			
+    		}
+    	};
+        searchResult.setAdapter(adapter);
         //检索
         mPoiSearch = PoiSearch.newInstance();
         mPoiSearch.setOnGetPoiSearchResultListener(poiListener);
@@ -161,26 +176,26 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
         
       		mMapView = (MapView) findViewById(R.id.bmapView);
 //      		sendButton = (Button) findViewById(R.id.btn_location_send);
-      		Intent intent = getIntent();
-      		double latitude = intent.getDoubleExtra("latitude", 0);
+//      		Intent intent = getIntent();
+//      		double latitude = intent.getDoubleExtra("latitude", 0);
       		mCurrentMode = LocationMode.NORMAL;
       		mBaiduMap = mMapView.getMap();
       		MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(15.0f);
       		mBaiduMap.setMapStatus(msu);
       		initMapView();
-      		if (latitude == 0) {
-      			mMapView = new MapView(this, new BaiduMapOptions());
-      			mBaiduMap.setMyLocationConfigeration(new MyLocationConfiguration(
-      							mCurrentMode, true, null));
-      		} else {
-      			double longtitude = intent.getDoubleExtra("longitude", 0);
-      			String address = intent.getStringExtra("address");
-      			LatLng p = new LatLng(latitude, longtitude);
-      			mMapView = new MapView(this,
-      					new BaiduMapOptions().mapStatus(new MapStatus.Builder()
-      							.target(p).build()));
-      			showMap(latitude, longtitude, address);
-      		}
+//      		if (latitude == 0) {
+//      			mMapView = new MapView(this, new BaiduMapOptions());
+//      			mBaiduMap.setMyLocationConfigeration(new MyLocationConfiguration(
+//      							mCurrentMode, true, null));
+//      		} else {
+//      			double longtitude = intent.getDoubleExtra("longitude", 0);
+//      			String address = intent.getStringExtra("address");
+//      			LatLng p = new LatLng(latitude, longtitude);
+//      			mMapView = new MapView(this,
+//      					new BaiduMapOptions().mapStatus(new MapStatus.Builder()
+//      							.target(p).build()));
+//      			showMap(latitude, longtitude, address);
+//      		}
       		initLocation();
     }
     
@@ -216,13 +231,20 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
 
     	LatLng latLng = new LatLng(myBDLocation.getLatitude(), myBDLocation.getLongitude());
     	
-    	setMapLating(latLng, myBDLocation.getAddrStr());
-    	showMap(myBDLocation.getLatitude(), myBDLocation.getLongitude(), myBDLocation.getAddrStr());
+    	setMapLating(latLng, myBDLocation.getAddrStr(), false);
+//    	showMap(myBDLocation.getLatitude(), myBDLocation.getLongitude(), myBDLocation.getAddrStr());
     	locationService.unregisterListener(mListener);
     	// 当不需要定位图层时关闭定位图层  
     }
     
     private void setMapLating(LatLng latLng,String address) {
+    	setMapLating(latLng, address, true);
+    }
+    
+    private void setMapLating(LatLng latLng,String address, boolean reset) {
+    	if (null != cMaker && reset) {
+    		cMaker.remove();
+    	}
     	BitmapDescriptor bitmap = BitmapDescriptorFactory  
         	    .fromResource(R.drawable.icon_marka);  
     	OverlayOptions options = new MarkerOptions()
@@ -231,7 +253,7 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
         .zIndex(9)  //设置marker所在层级
         .draggable(false);  //设置手势拖拽
     //将marker添加到地图上
-     	Marker marker = (Marker) (mBaiduMap.addOverlay(options));
+    	cMaker = (Marker) (mBaiduMap.addOverlay(options));
      	showMap(latLng.latitude, latLng.longitude, address);
     
     }
@@ -242,15 +264,15 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
     private void showMap(double latitude, double longtitude, String address) {
 //		sendButton.setVisibility(View.GONE);
 		LatLng llA = new LatLng(latitude, longtitude);
-		CoordinateConverter converter= new CoordinateConverter();
-		converter.coord(llA);
-		converter.from(CoordinateConverter.CoordType.COMMON);
-		LatLng convertLatLng = converter.convert();
-		OverlayOptions ooA = new MarkerOptions().position(convertLatLng).icon(BitmapDescriptorFactory
-				.fromResource(R.drawable.icon_marka))
-				.zIndex(4).draggable(true);
-		mBaiduMap.addOverlay(ooA);
-		MapStatusUpdate u = MapStatusUpdateFactory.newLatLngZoom(convertLatLng, 17.0f);
+//		CoordinateConverter converter= new CoordinateConverter();
+//		converter.coord(llA);
+//		converter.from(CoordinateConverter.CoordType.COMMON);
+//		LatLng convertLatLng = converter.convert();
+//		OverlayOptions ooA = new MarkerOptions().position(convertLatLng).icon(BitmapDescriptorFactory
+//				.fromResource(R.drawable.icon_marka))
+//				.zIndex(4).draggable(true);
+//		mBaiduMap.addOverlay(ooA);
+		MapStatusUpdate u = MapStatusUpdateFactory.newLatLngZoom(llA, 17.0f);
 		mBaiduMap.animateMapStatus(u);
 	}
     
@@ -304,6 +326,8 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
 		public void onReceiveLocation(BDLocation location) {
 			// TODO Auto-generated method stub
 			if (null != location && location.getLocType() != BDLocation.TypeServerError) {
+				myBDLocation = location;
+				setLocaton();
 				StringBuffer sb = new StringBuffer(256);
 				sb.append("time : ");
 				/**
@@ -360,8 +384,6 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
 //					sb.append("\ndescribe : ");
 //					sb.append("gps定位成功");
 					
-					myBDLocation = location;
-					setLocaton();
 				} else if (location.getLocType() == BDLocation.TypeNetWorkLocation) {// 网络定位结果
 					// 运营商信息
 				    if (location.hasAltitude()) {// *****如果有海拔高度*****

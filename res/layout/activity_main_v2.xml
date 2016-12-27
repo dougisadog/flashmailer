@@ -93,6 +93,13 @@
                 android:visibility="invisible" />
         </RelativeLayout>
     </LinearLayout>
+    
+                <LinearLayout
+                android:id="@+id/adContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+            </LinearLayout>
 
     <ImageView
         android:id="@+id/mainAD"
