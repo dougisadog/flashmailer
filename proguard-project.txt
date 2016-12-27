@@ -31,3 +31,7 @@ public static final int *;
 -keepclassmembers class * extends android.webkit.WebChromeClient{
    		public void openFileChooser(...);
 }
+
+-keep class com.baidu.** {*;}
+-keep class vi.com.** {*;}    
+-dontwarn com.baidu.**

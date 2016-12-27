@@ -88,7 +88,7 @@ public class MenuActivity extends SlidingFragmentActivity implements ScreenState
 		SlidingMenu sm = getSlidingMenu();
 		sm.setShadowWidthRes(R.dimen.shadow_width);
 		sm.setShadowDrawable(R.drawable.shadow);
-		sm.setBehindWidthRes(R.dimen.page_right_new);
+		sm.setBehindWidthRes(R.dimen.slidingmenu_width);
 //		sm.setFadeDegree(0.5f);
 		sm.setFadeEnabled(false);
 //		sm.setBgFadeEnabled(true);

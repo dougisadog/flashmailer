@@ -55,5 +55,11 @@
     <dimen name="page_bottom_v2">15dp</dimen>  <!-- 总页面下padding -->
     <dimen name="text_top_v2">5dp</dimen>  <!-- 文字上padding -->
     <dimen name="text_bottom_v2">5dp</dimen>  <!-- 文字下padding -->
+    
+        <!-- menu -->
+    <dimen name="shadow_width">15dp</dimen>
+    <dimen name="slidingmenu_offset">40dp</dimen>
+    <dimen name="slidingmenu_width">260dp</dimen>
+    
 
 </resources>

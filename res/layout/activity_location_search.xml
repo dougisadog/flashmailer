@@ -21,7 +21,10 @@
             android:id="@+id/condition1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:background="@color/white"
             android:gravity="center_vertical"
+            android:textSize="@dimen/font_hint_v2"
             android:hint="小区名,大厦名，街道门牌号" />
     </LinearLayout>
 
@@ -42,6 +45,9 @@
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:textSize="@dimen/font_hint_v2"
+            android:background="@color/white"
             android:gravity="center_vertical"
             android:hint="楼层门牌号" />
         

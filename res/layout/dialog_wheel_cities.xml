@@ -29,26 +29,26 @@
             android:layout_marginBottom="10dp" 
             android:orientation="horizontal" >
 
-            <kankan.wheel.widget.WheelView
+            <wheel.WheelView
                 android:id="@+id/id_date"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1" >
-            </kankan.wheel.widget.WheelView>
+            </wheel.WheelView>
 
-            <kankan.wheel.widget.WheelView
+            <wheel.WheelView
                 android:id="@+id/id_hour"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1" >
-            </kankan.wheel.widget.WheelView>
+            </wheel.WheelView>
 
-            <kankan.wheel.widget.WheelView
+            <wheel.WheelView
                 android:id="@+id/id_minute"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1" >
-            </kankan.wheel.widget.WheelView>
+            </wheel.WheelView>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

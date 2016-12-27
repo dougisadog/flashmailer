@@ -75,6 +75,7 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
 	private OnGetPoiSearchResultListener poiListener = new OnGetPoiSearchResultListener(){  
 	    public void onGetPoiResult(PoiResult result){
 	    	List<PoiInfo> infos = result.getAllPoi();
+	    	if (null == infos) return;
 	    	for (PoiInfo poiInfo : infos) {
 	    		System.out.println(poiInfo.address + poiInfo.location + poiInfo.name);
 			}

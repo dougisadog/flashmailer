@@ -135,7 +135,7 @@ public class AtyHome extends MenuActivity {
 						Toast.makeText(AtyHome.this, "最大", Toast.LENGTH_LONG).show();
 						return;
 					}
-					currentWeightIndex = currentWeightIndex++;
+					currentWeightIndex++;
 					txtWeight.setText(orderWeight[currentWeightIndex]);
 					break;
 				case R.id.minus :   //减重
@@ -143,7 +143,7 @@ public class AtyHome extends MenuActivity {
 						Toast.makeText(AtyHome.this, "最大", Toast.LENGTH_LONG).show();
 						return;
 					}
-					currentWeightIndex = currentWeightIndex--;
+					currentWeightIndex--;
 					txtWeight.setText(orderWeight[currentWeightIndex]);
 					break;
 				case R.id.orderTime :   //预约时间
