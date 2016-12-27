@@ -4,7 +4,7 @@ package com.doug.component.dialog;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.doug.emojihelper.R;
+import com.doug.flashmailer.R;
 
 import android.content.Context;
 import android.os.Bundle;

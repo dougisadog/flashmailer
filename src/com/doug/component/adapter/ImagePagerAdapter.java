@@ -8,7 +8,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.doug.component.bean.CItem;
 import com.doug.component.widget.ZoomImageView;
 import com.doug.component.widget.ZoomImageView.LongPressCallBack;
-import com.doug.emojihelper.R;
+import com.doug.flashmailer.R;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;

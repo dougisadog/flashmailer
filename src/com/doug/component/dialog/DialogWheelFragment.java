@@ -1,7 +1,7 @@
 package com.doug.component.dialog;
 
 import com.doug.component.adapter.WeelAdapter;
-import com.doug.emojihelper.R;
+import com.doug.flashmailer.R;
 
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment1;

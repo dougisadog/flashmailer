@@ -34,7 +34,7 @@ import com.doug.FlashApplication;
 import com.doug.component.adapter.CommonAdapter;
 import com.doug.component.adapter.ViewHolder;
 import com.doug.component.service.LocationService;
-import com.doug.emojihelper.R;
+import com.doug.flashmailer.R;
 import com.louding.frame.KJActivity;
 import com.louding.frame.utils.StringUtils;
 

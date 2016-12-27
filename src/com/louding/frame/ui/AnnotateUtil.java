@@ -23,7 +23,7 @@ import java.io.FileWriter;
 import java.lang.reflect.Field;
 
 import com.doug.component.file.FileUtils;
-import com.doug.emojihelper.R;
+import com.doug.flashmailer.R;
 
 import android.app.Activity;
 import android.app.Fragment;

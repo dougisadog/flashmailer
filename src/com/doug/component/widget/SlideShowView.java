@@ -29,7 +29,7 @@ import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.doug.AppConstants;
-import com.doug.emojihelper.R;
+import com.doug.flashmailer.R;
 import com.louding.frame.KJHttp;
 import com.louding.frame.http.HttpCallBack;
 import com.louding.frame.http.HttpParams;

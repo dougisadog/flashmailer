@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.bumptech.glide.Glide;
 import com.doug.component.bean.CItem;
-import com.doug.emojihelper.R;
+import com.doug.flashmailer.R;
 import com.louding.frame.utils.DensityUtils;
 
 import android.content.Context;
@@ -23,7 +23,7 @@ public class ImageGridAdapter extends BaseAdapter {
     private List<CItem> mNameList = new ArrayList<CItem>();  
     private LayoutInflater mInflater;  
     private Context mContext;  
-    AbsListView.LayoutParams params;  
+//    AbsListView.LayoutParams params;  
     
     private ItemCallBack itemCallBack;
     
@@ -68,7 +68,7 @@ public class ImageGridAdapter extends BaseAdapter {
         if (convertView == null)  
         {  
             convertView = mInflater.inflate(R.layout.item_city, null);  
-            convertView.setLayoutParams(params);
+//            convertView.setLayoutParams(params);
             // construct an item tag   
             viewTag = new ItemViewTag((ImageView) convertView.findViewById(R.id.tabImg), (TextView) convertView.findViewById(R.id.tabName));  
             convertView.setTag(viewTag);  

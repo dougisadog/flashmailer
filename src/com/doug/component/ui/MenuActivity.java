@@ -4,12 +4,9 @@ import java.util.List;
 
 import com.doug.FlashApplication;
 import com.doug.component.support.ScreenObserver.ScreenStateListener;
-import com.doug.emojihelper.R;
-//import com.yanshang.yilicai.lib.SlidingMenu;
-//import com.yanshang.yilicai.lib.app.SlidingFragmentActivity;
-
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
+import com.doug.flashmailer.R;
+import com.yanshang.yilicai.lib.SlidingMenu;
+import com.yanshang.yilicai.lib.app.SlidingFragmentActivity;
 
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;

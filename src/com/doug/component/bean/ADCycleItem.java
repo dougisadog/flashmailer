@@ -1,6 +1,6 @@
 package com.doug.component.bean;
 
-import com.doug.emojihelper.R;
+import com.doug.flashmailer.R;
 
 import android.content.Context;
 import android.view.LayoutInflater;

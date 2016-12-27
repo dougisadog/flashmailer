@@ -22,7 +22,7 @@ import com.doug.AppConstants;
 import com.doug.component.support.InfoManager;
 import com.doug.component.support.UIHelper;
 import com.doug.component.support.InfoManager.TaskCallBack;
-import com.doug.emojihelper.R;
+import com.doug.flashmailer.R;
 import com.louding.frame.KJActivity;
 import com.louding.frame.KJDB;
 import com.louding.frame.KJHttp;

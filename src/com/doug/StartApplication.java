@@ -20,14 +20,14 @@ import com.doug.component.bean.ShopADData;
 import com.doug.component.cache.CacheBean;
 import com.doug.component.error.DebugPrinter;
 import com.doug.component.ui.AtyMainAD;
-import com.doug.component.ui.MainActivity;
+import com.doug.component.ui.AtyHome;
 import com.doug.component.utils.ImageUtils;
 import com.louding.frame.KJActivity;
 import com.louding.frame.KJHttp;
 import com.louding.frame.http.HttpCallBack;
 import com.louding.frame.http.HttpParams;
 import com.louding.frame.utils.StringUtils;
-import com.doug.emojihelper.R;
+import com.doug.flashmailer.R;
 
 public class StartApplication extends KJActivity {
 	
@@ -195,7 +195,7 @@ public class StartApplication extends KJActivity {
 		// GuideActivity.class);// 引导页
 		MainAD ad = CacheBean.getInstance().getAd();
 		if (null == ad || StringUtils.isEmpty(ad.getImg())) {
-			mainIntent = new Intent(StartApplication.this, MainActivity.class);
+			mainIntent = new Intent(StartApplication.this, AtyHome.class);
 		}
 		else {
 			mainIntent = new Intent(StartApplication.this, AtyMainAD.class);

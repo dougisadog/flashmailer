@@ -8,7 +8,7 @@ import com.doug.component.bean.database.UserConfig;
 import com.doug.component.support.InfoManager;
 import com.doug.component.support.InfoManager.TaskCallBack;
 import com.doug.component.widget.LoudingDialogIOS;
-import com.doug.emojihelper.R;
+import com.doug.flashmailer.R;
 import com.louding.frame.KJActivity;
 import com.louding.frame.KJDB;
 import com.louding.frame.KJHttp;

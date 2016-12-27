@@ -13,7 +13,7 @@ import com.doug.AppVariables;
 import com.doug.component.support.UIHelper;
 import com.doug.component.utils.ApplicationUtil;
 import com.doug.component.widget.LoudingDialogIOS;
-import com.doug.emojihelper.R;
+import com.doug.flashmailer.R;
 import com.louding.frame.KJActivity;
 import com.louding.frame.KJHttp;
 import com.louding.frame.http.HttpCallBack;

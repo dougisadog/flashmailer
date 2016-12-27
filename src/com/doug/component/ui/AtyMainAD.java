@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide;
 import com.doug.component.bean.MainAD;
 import com.doug.component.cache.CacheBean;
 import com.doug.component.utils.ImageUtils;
-import com.doug.emojihelper.R;
+import com.doug.flashmailer.R;
 import com.louding.frame.KJActivity;
 import com.louding.frame.utils.StringUtils;
 
@@ -90,7 +90,7 @@ public class AtyMainAD extends KJActivity implements OnClickListener {
 	private void goToNextView(boolean ForGoods) {
     	mTimer.cancel();
 		Intent intent = null;
-		intent = new Intent(this, MainActivity.class);
+		intent = new Intent(this, AtyHome.class);
 		if (ForGoods && !TextUtils.isEmpty(mainAD.getLink())) {
 			intent.putExtra(GOODS_ID, mainAD.getLink());
 		}

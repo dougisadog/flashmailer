@@ -1,6 +1,6 @@
 package com.doug.component.widget;
 
-import com.doug.emojihelper.R;
+import com.doug.flashmailer.R;
 
 import android.app.Activity;
 import android.content.Context;

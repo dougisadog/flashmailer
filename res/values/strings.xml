@@ -1,7 +1,7 @@
 <resources>
 
     <string name="test">这是一个测试。。</string>
-    <string name="app_name">表情助手</string>
+    <string name="app_name">跑男</string>
     <string name="dialog_title">温馨提示</string>
     <string name="dialog_confirm">确定</string>
     <string name="back">返回</string>

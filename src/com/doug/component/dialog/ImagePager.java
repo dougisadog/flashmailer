@@ -7,7 +7,7 @@ import com.doug.component.adapter.ImagePagerAdapter;
 import com.doug.component.bean.CItem;
 import com.doug.component.cache.CacheBean;
 import com.doug.component.utils.CommonUtils;
-import com.doug.emojihelper.R;
+import com.doug.flashmailer.R;
 
 import android.os.Bundle;
 import android.os.Handler;

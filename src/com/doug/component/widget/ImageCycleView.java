@@ -2,7 +2,7 @@ package com.doug.component.widget;
 
 import java.util.ArrayList;
 
-import com.doug.emojihelper.R;
+import com.doug.flashmailer.R;
 
 import android.content.Context;
 import android.os.Handler;

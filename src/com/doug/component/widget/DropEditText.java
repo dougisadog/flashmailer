@@ -1,7 +1,7 @@
 package com.doug.component.widget;
 
-import com.doug.emojihelper.R;
-import com.doug.emojihelper.R.color;
+import com.doug.flashmailer.R;
+import com.doug.flashmailer.R.color;
 
 import android.content.Context;
 import android.content.res.TypedArray;

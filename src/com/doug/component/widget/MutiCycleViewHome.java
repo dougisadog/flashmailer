@@ -13,7 +13,7 @@ import com.doug.component.bean.ADCycleItem;
 import com.doug.component.bean.CycleData;
 import com.doug.component.bean.ShopADData;
 import com.doug.component.cache.CacheBean;
-import com.doug.emojihelper.R;
+import com.doug.flashmailer.R;
 import com.louding.frame.KJHttp;
 import com.louding.frame.http.HttpCallBack;
 import com.louding.frame.http.HttpParams;

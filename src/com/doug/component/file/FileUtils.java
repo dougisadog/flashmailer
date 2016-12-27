@@ -22,7 +22,7 @@ import java.util.zip.ZipFile;
 
 import com.doug.FlashApplication;
 import com.doug.component.error.DebugPrinter;
-import com.doug.emojihelper.R;
+import com.doug.flashmailer.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;

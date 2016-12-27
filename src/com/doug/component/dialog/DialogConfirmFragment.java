@@ -2,7 +2,7 @@ package com.doug.component.dialog;
 
 import java.lang.reflect.Field;
 
-import com.doug.emojihelper.R;
+import com.doug.flashmailer.R;
 
 import android.app.Dialog;
 import android.content.DialogInterface;

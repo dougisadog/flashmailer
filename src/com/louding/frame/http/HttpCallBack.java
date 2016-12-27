@@ -25,7 +25,7 @@ import android.widget.Toast;
 
 import com.doug.component.utils.ApplicationUtil;
 import com.doug.component.widget.LoudingDialogIOS;
-import com.doug.emojihelper.R;
+import com.doug.flashmailer.R;
 import com.louding.frame.utils.KJLoger;
 
 /**

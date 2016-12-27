@@ -22,7 +22,7 @@ package wheel;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.doug.emojihelper.R;
+import com.doug.flashmailer.R;
 
 import android.content.Context;
 import android.database.DataSetObserver;

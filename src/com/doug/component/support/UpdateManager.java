@@ -15,7 +15,7 @@ import com.doug.AppVariables;
 import com.doug.StartApplication;
 import com.doug.component.bean.Update;
 import com.doug.component.utils.ApplicationUtil;
-import com.doug.emojihelper.R;
+import com.doug.flashmailer.R;
 import com.louding.frame.utils.StringUtils;
 
 import android.annotation.SuppressLint;

@@ -7,7 +7,7 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.doug.emojihelper.R;
+import com.doug.flashmailer.R;
 
 public class CircleProgressBar extends View {
 
