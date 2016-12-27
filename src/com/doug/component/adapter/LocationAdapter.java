@@ -54,21 +54,35 @@ public abstract class LocationAdapter<T> extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         final ViewHolder viewHolder = getViewHolder(position, convertView,
                 parent);
-        viewHolder.getConvertView().setOnTouchListener(new OnTouchListener() {
-			
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				System.out.println("t");
-				click(0, list, position,viewHolder);
-				return false;
-			}
-		});
-        viewHolder.setHandler(new MyClickHandler() {
-            @Override
-            public void viewClick(int id) {
-                click(id, list, position,viewHolder);
-            }
-        });
+//        viewHolder.getConvertView().setOnTouchListener(new OnTouchListener() {
+//			
+//			@Override
+//			public boolean onTouch(View v, MotionEvent event) {
+//				switch (event.getAction()) {
+//					case MotionEvent.ACTION_DOWN :
+//						System.out.println("down");
+//						break;
+//					case MotionEvent.ACTION_CANCEL :
+//						System.out.println("CANCE");
+//						break;
+//					case MotionEvent.ACTION_UP :
+//						System.out.println("up");
+//						click(0, list, position,viewHolder);
+//						break;
+//
+//					default :
+//						break;
+//				}
+//				System.out.println("t");
+//				return false;
+//			}
+//		});
+//        viewHolder.setHandler(new MyClickHandler() {
+//            @Override
+//            public void viewClick(int id) {
+//                click(id, list, position,viewHolder);
+//            }
+//        });
         canvas(viewHolder, getItem(position));
         return viewHolder.getConvertView();
     }

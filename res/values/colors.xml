@@ -149,6 +149,8 @@
     <color name="gainsboro">#dcdcdc</color> <!-- 淡灰色 -->
     <color name="orange">#ff6633</color> <!-- v2橙色 -->
     
+    <color name="header">#87ceeb</color> <!-- v2橙色 -->
+    
     
     <!-- 透明 -->
     <color name="transparent">#00000000</color>

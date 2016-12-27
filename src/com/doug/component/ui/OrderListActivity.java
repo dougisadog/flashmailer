@@ -30,7 +30,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class InvestActivity extends KJActivity {
+public class OrderListActivity extends KJActivity {
 
 	@BindView(id = R.id.listview)
 	private KJListView listview;
@@ -51,15 +51,16 @@ public class InvestActivity extends KJActivity {
 
 	@Override
 	public void setRootView() {
-		setContentView(R.layout.activity_invest_v2);
-		UIHelper.setTitleView(this, "我的账户", "投资记录");
+		setContentView(R.layout.activity_order_list);
+		UIHelper.setTitleView(this, "", "我的订单");
+		UIHelper.setBtnRight(this, R.drawable.icon_search_on, this);
 	}
 
 	@Override
 	public void initData() {
 		super.initData();
 		url = AppConstants.INVEST_ORDER;
-		state = 1;
+		state = getIntent().getIntExtra("type", 0);
 		data = new ArrayList<Invest>();
 		http = new KJHttp();
 		params = new HttpParams();
@@ -69,6 +70,23 @@ public class InvestActivity extends KJActivity {
 		params.put("page", page);
 		params.put("sid", AppVariables.sid);
 		http.post(url, params, httpCallback);
+	}
+	
+	private void search() {
+		Toast.makeText(this, "search", Toast.LENGTH_LONG).show();
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+			case R.id.flright :
+				search();
+				break;
+
+			default :
+				break;
+		}
+		super.onClick(v);
 	}
 
 	@Override
@@ -109,9 +127,9 @@ public class InvestActivity extends KJActivity {
 
 		});
 		
-		titleTab.clickItem(0);
-		adapter = new CommonAdapter<Invest>(InvestActivity.this,
-				R.layout.item_invest_v2) {
+		titleTab.clickItem(state);
+		adapter = new CommonAdapter<Invest>(OrderListActivity.this,
+				R.layout.item_order) {
 			@Override
 			public void canvas(ViewHolder holder, Invest item) {
 				holder.addClick(R.id.invest_protocol);
@@ -198,7 +216,7 @@ public class InvestActivity extends KJActivity {
 		}
 	};
 
-	private HttpCallBack httpCallback = new HttpCallBack(InvestActivity.this) {
+	private HttpCallBack httpCallback = new HttpCallBack(OrderListActivity.this) {
 		public void success(org.json.JSONObject ret) {
 			try {
 				JSONObject articles = ret.getJSONObject("orders");
@@ -224,7 +242,7 @@ public class InvestActivity extends KJActivity {
 					page = page - 1;
 				}
 				e.printStackTrace();
-				Toast.makeText(InvestActivity.this, R.string.app_data_error,
+				Toast.makeText(OrderListActivity.this, R.string.app_data_error,
 						Toast.LENGTH_SHORT).show();
 			}
 		}

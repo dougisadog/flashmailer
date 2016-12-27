@@ -8,6 +8,7 @@ import java.util.List;
 import org.json.JSONObject;
 import org.kymjs.kjframe.http.Cache;
 
+import com.baidu.location.BDLocation;
 import com.doug.AppVariables;
 import com.doug.component.bean.CItem;
 import com.doug.component.bean.MainAD;
@@ -76,6 +77,8 @@ public class CacheBean {
 	private List<CItem> items = new ArrayList<CItem>(); //全部表情页面数据
 	
 	private List<CItem> currentItems = new ArrayList<CItem>(); //当前表情页面数据
+	
+	private BDLocation myBDLocation;
 	
 	public List<UserSearch> getSearches() {
 		return searches;
@@ -171,6 +174,14 @@ public class CacheBean {
 
 	public void setCurrentItems(List<CItem> currentItems) {
 		this.currentItems = currentItems;
+	}
+
+	public BDLocation getMyBDLocation() {
+		return myBDLocation;
+	}
+
+	public void setMyBDLocation(BDLocation myBDLocation) {
+		this.myBDLocation = myBDLocation;
 	}
 
 

@@ -74,15 +74,6 @@
             android:clickable="true" />
     </RelativeLayout>
 
-            <com.louding.frame.widget.KJListView
-            android:id="@+id/searchResult"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:headerDividersEnabled="false"
-            android:footerDividersEnabled="false"
-            android:divider="@color/transparent"
-            android:dividerHeight="1dp" />
-            
     <ListView
         android:id="@+id/searchResult"
         android:layout_width="match_parent"

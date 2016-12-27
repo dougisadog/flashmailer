@@ -91,22 +91,22 @@ public abstract class HttpCallBack {
 	 * @param t
 	 */
 	public void onSuccess(String t) {
-//		KJLoger.debug("Http请求成功。。。");
-//		System.out.println(t);
-//		try {
-//			JSONObject ret = new JSONObject(t);
-//			int state = ret.getInt("status");
-//			if (state != 0) {
-//				failure(ret);
-//			} else {
-//				success(ret);
-//			}
-//		} catch (JSONException e) {
-//			System.out.println("json数据解析错误。");
-//			Toast.makeText(context, R.string.app_data_error, Toast.LENGTH_SHORT)
-//					.show();
-//			dissmiss();
-//		}
+		KJLoger.debug("Http请求成功。。。");
+		System.out.println(t);
+		try {
+			JSONObject ret = new JSONObject(t);
+			int state = ret.getInt("status");
+			if (state != 0) {
+				failure(ret);
+			} else {
+				success(ret);
+			}
+		} catch (JSONException e) {
+			System.out.println("json数据解析错误。");
+			Toast.makeText(context, R.string.app_data_error, Toast.LENGTH_SHORT)
+					.show();
+			dissmiss();
+		}
 		dissmiss();
 	}
 

@@ -108,7 +108,7 @@ public class MenuActivity extends SlidingFragmentActivity implements ScreenState
 		
 		@Override
 		public void onClick(View v) {
-			Intent i = new Intent(MenuActivity.this, InvestActivity.class);
+			Intent i = new Intent(MenuActivity.this, OrderListActivity.class);
 			switch (v.getId()) {
 				case R.id.accountDetail: //个人资料
 					break;

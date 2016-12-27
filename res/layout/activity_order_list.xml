@@ -15,7 +15,7 @@
         <include layout="@layout/header" />
     </LinearLayout>
     
-    <com.nangua.xiaomanjflc.widget.TitleTab 
+    <com.doug.component.widget.TitleTab 
         android:id="@+id/mytab"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -35,7 +35,7 @@
             android:divider="@color/transparent"
             android:dividerHeight="5dp" />
 
-        <com.nangua.xiaomanjflc.widget.FontTextView 
+        <TextView 
             android:id="@+id/empty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

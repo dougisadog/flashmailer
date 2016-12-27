@@ -72,11 +72,13 @@ public class AtyHome extends MenuActivity {
 		flleft.setOnClickListener(listener);
 		TextView title_center = (TextView) findViewById(R.id.title_center);
 		title_center.setText("跑男");
-		findViewById(R.id.rlright).setOnClickListener(listener);
+		findViewById(R.id.llright).setOnClickListener(listener);
 		
 		city = (TextView) findViewById(R.id.city);
 		mainAD = (ImageView) findViewById(R.id.mainAD);
 		mainAD.setOnClickListener(listener);
+		mainAD.setVisibility(View.GONE);
+		
 		txtWeight = (TextView) findViewById(R.id.txtWeight);
 		plus = (ImageView) findViewById(R.id.plus);
 		plus.setOnClickListener(listener);
@@ -139,7 +141,7 @@ public class AtyHome extends MenuActivity {
 				case R.id.flleft : //左拉
 					toggle();
 					break;
-				case R.id.rlright : //选城市
+				case R.id.llright : //选城市
 					startActivityForResult(new Intent(AtyHome.this, AtyCity.class),  1000);
 					break;
 				case R.id.mainAD :  //广告
