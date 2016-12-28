@@ -179,28 +179,32 @@ public class DialogOrderTimeFragment extends DialogFragment1
 	 * 根据当前的市，更新区WheelView的信息
 	 */
 	private void updateMinutes() {
-		if (mHour.getCurrentItem() == 0) {
-			mMinute.setViewAdapter(new WeelAdapter(getActivity(), new String[0]));
-			return;
-		}
-		int currentMinute = (new Date().getMinutes() / 5 + 1) * 5;
-		
-		int size = (56 - currentMinute) / 5 + 1;
-		mMinuteDatasMap = new String[size];
-		if (size == 1) {
-			mMinuteDatasMap = new String[] {"00"};
-		}
-		else {
-			if (mDate.getCurrentItem() == 0 && mHour.getCurrentItem() == 1) {
+		if (mDate.getCurrentItem() == 0) {
+			if (mHour.getCurrentItem() == 0) {
+				mMinute.setViewAdapter(new WeelAdapter(getActivity(), new String[0]));
+				return;
+			}
+			else if (mHour.getCurrentItem() == 1){
+				int currentMinute = (new Date().getMinutes() / 5 + 1) * 5;
 				
-				for (int j = currentMinute; j < 56; j = j + 5) {
-					mMinuteDatasMap[(j - currentMinute) / 5] = j + "";
-					// System.out.println((j - currentMinute)/5 + ":" + j + "\n");
+				int size = (56 - currentMinute) / 5 + 1;
+				mMinuteDatasMap = new String[size];
+				if (size == 1) {
+					mMinuteDatasMap = new String[] {"00"};
+				}
+				else {
+					for (int j = currentMinute; j < 56; j = j + 5) {
+						mMinuteDatasMap[(j - currentMinute) / 5] = j + "";
+						// System.out.println((j - currentMinute)/5 + ":" + j + "\n");
+					}
 				}
 			}
 			else {
 				mMinuteDatasMap = getResources().getStringArray(R.array.appointMinute);
 			}
+		}
+		else {
+			mMinuteDatasMap = getResources().getStringArray(R.array.appointMinute);
 		}
 		mMinute.setViewAdapter(new WeelAdapter(getActivity(), mMinuteDatasMap));
 		mMinute.setCurrentItem(0);
@@ -211,16 +215,21 @@ public class DialogOrderTimeFragment extends DialogFragment1
 	 */
 	private void updateHours() {
 		int pCurrent = mDate.getCurrentItem();
-		int currentHour = new Date().getHours();
-		if (new Date().getMinutes() > 55) {
-			currentHour++;
+		if (pCurrent == 0) {
+			int currentHour = new Date().getHours();
+			if (new Date().getMinutes() > 55) {
+				currentHour++;
+			}
+			int size = 24 - currentHour + 1;
+			mHourDatasMap = new String[size];
+			
+			mHourDatasMap[0] = "立即取件";
+			for (int j = currentHour; j < 24; j++) {
+				mHourDatasMap[j - currentHour + 1] = j + "";
+			}
 		}
-		int size = 23 - currentHour + 2;
-		mHourDatasMap = new String[size];
-
-		mHourDatasMap[0] = "立即取件";
-		for (int j = currentHour; j < 24; j++) {
-			mHourDatasMap[j - currentHour + 1] = j + "";
+		else {
+			mHourDatasMap = getResources().getStringArray(R.array.appointHour);
 		}
 		mHour.setViewAdapter(new WeelAdapter(getActivity(), mHourDatasMap));
 		mHour.setCurrentItem(0);

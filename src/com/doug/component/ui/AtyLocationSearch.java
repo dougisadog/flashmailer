@@ -66,6 +66,9 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
 
 	private AdapterLocationSearch adapter;
 
+	/**
+	 * 位置查询回调
+	 */
 	private OnGetPoiSearchResultListener poiListener = new OnGetPoiSearchResultListener() {
 		public void onGetPoiResult(PoiResult result) {
 			List<PoiInfo> infos = result.getAllPoi();
@@ -149,6 +152,9 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
 		initLocation();
 	}
 
+	/**
+	 * 初始化当前位置监听
+	 */
 	private void initLocation() {
 		locationService = FlashApplication.getInstance().locationService;
 		// 获取locationservice实例，建议应用中只初始化1个location实例，然后使用，可以参考其他示例的activity，都是通过此种方式获取locationservice实例的
@@ -165,6 +171,10 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
 		locationService.start();// 定位SDK
 	}
 
+	
+	/**
+	 * 更新当前位置
+	 */
 	private void setLocaton() {
 		
 		BDLocation bdLocation = CacheBean.getInstance().getMyBDLocation();
@@ -188,7 +198,6 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
 				.draggable(false); // 设置手势拖拽
 		// 将marker添加到地图上
 		myMarker = (Marker) (mBaiduMap.addOverlay(options));
-		setMapLating(latLng, bdLocation.getAddrStr(), false);
 		if (firstLocation)
 			showMap(latLng.latitude, latLng.longitude, bdLocation.getAddrStr());
 	}
@@ -197,6 +206,13 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
 		setMapLating(latLng, address, true);
 	}
 
+	
+	/**
+	 * 设置位置标记
+	 * @param latLng  位置信息
+	 * @param address 地址
+	 * @param reset  true 替换 false 添加
+	 */
 	private void setMapLating(LatLng latLng, String address, boolean reset) {
 		if (null != cMaker && reset) {
 			cMaker.remove();
@@ -220,6 +236,10 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
 		mBaiduMap.animateMapStatus(u);
 	}
 
+	/**
+	 * 位置查询
+	 * @param keyword
+	 */
 	private void searchLocation(String keyword) {
 		String city = getIntent().getStringExtra("city");
 		if (StringUtils.isEmpty(city)) {

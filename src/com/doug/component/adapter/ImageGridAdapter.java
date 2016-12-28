@@ -91,6 +91,7 @@ public class ImageGridAdapter extends BaseAdapter {
         // set name   
         viewTag.mName.setText(mNameList.get(position).getName());
         CItem item = mNameList.get(position);
+        ll.setBackgroundResource("1".equals(item.getId()) ? R.drawable.bg_btn_dialog_p : R.drawable.bg_btn_dialog);
         viewTag.mName.setText(item.getName());
         viewTag.mIcon.setScaleType(ScaleType.FIT_CENTER);
         Glide.with(mContext).load(item.getValue()).placeholder(R.drawable.empty).into(viewTag.mIcon);

@@ -5,6 +5,7 @@ import java.util.List;
 import com.doug.component.adapter.ImageGridAdapter;
 import com.doug.component.adapter.ImageGridAdapter.ItemCallBack;
 import com.doug.component.bean.CItem;
+import com.doug.component.support.UIHelper;
 import com.doug.flashmailer.R;
 import com.louding.frame.KJActivity;
 import android.content.Intent;
@@ -22,11 +23,14 @@ public class AtyCity extends KJActivity implements OnClickListener {
 	
 	private GridView mCity;
 	private List<CItem> cities;
+	private String area = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city);
+        UIHelper.setTitleView(this, "", "请选择你所在的市区");
+        area = getIntent().getStringExtra("area");
         init();
 		mCity = (GridView) findViewById(R.id.emoji);
 		ImageGridAdapter adapter = new ImageGridAdapter(this, cities);
@@ -49,7 +53,11 @@ public class AtyCity extends KJActivity implements OnClickListener {
     	cities = new ArrayList<CItem>();
     	String[] a = getResources().getStringArray(R.array.areas);
     	for (int i = 0; i < a.length; i++) {
-    		cities.add(new CItem(a[i], a[i], i + ""));
+    		int selected = 0;
+    		if (area.equals(a[i])) {
+    			selected = 1;
+    		}
+    		cities.add(new CItem(a[i], a[i], selected + ""));
 		}
     }
     @Override

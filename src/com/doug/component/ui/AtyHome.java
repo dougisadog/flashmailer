@@ -59,6 +59,7 @@ public class AtyHome extends MenuActivity {
 	private LinearLayout adContainer;
 	private MutiCycleViewHome mcv;
 	private int adHeight;
+	private String currentArea = "";
 	
 
 	@Override
@@ -142,7 +143,9 @@ public class AtyHome extends MenuActivity {
 					toggle();
 					break;
 				case R.id.llright : //选城市
-					startActivityForResult(new Intent(AtyHome.this, AtyCity.class),  1000);
+					Intent i = new Intent(AtyHome.this, AtyCity.class);
+					i.putExtra("area", currentArea);
+					startActivityForResult(i,  1000);
 					break;
 				case R.id.mainAD :  //广告
 					break;
@@ -332,6 +335,7 @@ public class AtyHome extends MenuActivity {
 		case 1000:
 			String cityName = intent.getStringExtra("city");
 			if (!StringUtils.isEmpty(cityName)) {
+				currentArea = cityName;
 				city.setText(cityName);
 			}
 			break;

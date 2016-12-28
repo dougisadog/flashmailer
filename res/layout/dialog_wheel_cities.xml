@@ -31,21 +31,21 @@
 
             <wheel.WheelView
                 android:id="@+id/id_date"
-                android:layout_width="match_parent"
+                android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_weight="1" >
             </wheel.WheelView>
 
             <wheel.WheelView
                 android:id="@+id/id_hour"
-                android:layout_width="match_parent"
+                android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_weight="1" >
             </wheel.WheelView>
 
             <wheel.WheelView
                 android:id="@+id/id_minute"
-                android:layout_width="match_parent"
+                android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_weight="1" >
             </wheel.WheelView>

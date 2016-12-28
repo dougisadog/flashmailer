@@ -13,6 +13,7 @@ public class CItem {
 	public CItem(String name, String value, String id) {
 		this.name = name;
 		this.value = value;
+		this.id = id;
 	}
 
 	@Override
