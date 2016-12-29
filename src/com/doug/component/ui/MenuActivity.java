@@ -2,6 +2,7 @@ package com.doug.component.ui;
 
 import java.util.List;
 
+import com.doug.AppVariables;
 import com.doug.FlashApplication;
 import com.doug.component.support.ScreenObserver.ScreenStateListener;
 import com.doug.flashmailer.R;
@@ -111,6 +112,9 @@ public class MenuActivity extends SlidingFragmentActivity implements ScreenState
 			Intent i = new Intent(MenuActivity.this, OrderListActivity.class);
 			switch (v.getId()) {
 				case R.id.accountDetail: //个人资料
+					if (!AppVariables.isSignin) {
+						startActivity(new Intent(MenuActivity.this, SigninActivity.class));
+					}
 					break;
 				case R.id.news: //消息
 					break;
@@ -196,6 +200,13 @@ public class MenuActivity extends SlidingFragmentActivity implements ScreenState
         }
         return false;
     }
+    
+    /**
+     * 初始化个人数据
+     */
+    private void initCurrentDetail() {
+    	
+    }
 
 	
 	/***********************************************************************************************************************************************/
@@ -205,7 +216,7 @@ public class MenuActivity extends SlidingFragmentActivity implements ScreenState
 	/***********************************************************************************************************************************************/
 	
 	protected void initData() {
-		
+		initCurrentDetail();
 	}
 	
 	protected void initRequestData() {

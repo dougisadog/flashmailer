@@ -180,10 +180,12 @@ public class DialogOrderTimeFragment extends DialogFragment1
 	 */
 	private void updateMinutes() {
 		if (mDate.getCurrentItem() == 0) {
+			//立刻
 			if (mHour.getCurrentItem() == 0) {
 				mMinute.setViewAdapter(new WeelAdapter(getActivity(), new String[0]));
 				return;
 			}
+			//当前小时
 			else if (mHour.getCurrentItem() == 1){
 				int currentMinute = (new Date().getMinutes() / 5 + 1) * 5;
 				
@@ -215,6 +217,7 @@ public class DialogOrderTimeFragment extends DialogFragment1
 	 */
 	private void updateHours() {
 		int pCurrent = mDate.getCurrentItem();
+		//当天
 		if (pCurrent == 0) {
 			int currentHour = new Date().getHours();
 			if (new Date().getMinutes() > 55) {

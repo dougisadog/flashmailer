@@ -38,6 +38,7 @@
     <string name="pwd_old">输入旧登录密码</string>
     <string name="pwd_new">输入新登录密码</string>
     <string name="pwd_confirm">再次输入新登录密码</string>
+    <string name="different_pwd">两次输入密码不一致。</string>
     
     <!-- hint -->
     <string name="lesat_charge_amount">充值最低100元起</string>
@@ -49,6 +50,7 @@
     <string name="title_activity_yan_invite">YanInviteActivity</string>
     <string name="title_activity_invite_list">InviteListActivity</string>
     <string name="title_activity_verify_pwd">VerifyPwd</string>
+    
         <!-- dialog -->
     <string name="txtDialogCancelEn">Cancel</string>
     <string name="txtDialogCancelCn">(取消)</string>

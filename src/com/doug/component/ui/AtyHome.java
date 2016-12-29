@@ -77,7 +77,6 @@ public class AtyHome extends MenuActivity {
 		
 		city = (TextView) findViewById(R.id.city);
 		mainAD = (ImageView) findViewById(R.id.mainAD);
-		mainAD.setOnClickListener(listener);
 		mainAD.setVisibility(View.GONE);
 		
 		txtWeight = (TextView) findViewById(R.id.txtWeight);
@@ -146,8 +145,6 @@ public class AtyHome extends MenuActivity {
 					Intent i = new Intent(AtyHome.this, AtyCity.class);
 					i.putExtra("area", currentArea);
 					startActivityForResult(i,  1000);
-					break;
-				case R.id.mainAD :  //广告
 					break;
 				case R.id.plus :    //加重
 					if (currentWeightIndex == orderWeight.length -1) {
