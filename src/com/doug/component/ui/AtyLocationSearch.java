@@ -1,5 +1,6 @@
 package com.doug.component.ui;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.baidu.location.BDLocation;
@@ -19,8 +20,10 @@ import com.baidu.mapapi.search.poi.OnGetPoiSearchResultListener;
 import com.baidu.mapapi.search.poi.PoiCitySearchOption;
 import com.baidu.mapapi.search.poi.PoiDetailResult;
 import com.baidu.mapapi.search.poi.PoiIndoorResult;
+import com.baidu.mapapi.search.poi.PoiNearbySearchOption;
 import com.baidu.mapapi.search.poi.PoiResult;
 import com.baidu.mapapi.search.poi.PoiSearch;
+import com.baidu.mapapi.search.poi.PoiSortType;
 import com.doug.FlashApplication;
 import com.doug.component.adapter.AdapterLocationSearch;
 import com.doug.component.cache.CacheBean;
@@ -73,7 +76,7 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
 		public void onGetPoiResult(PoiResult result) {
 			List<PoiInfo> infos = result.getAllPoi();
 			if (null == infos)
-				return;
+				infos = new ArrayList<PoiInfo>();
 			for (PoiInfo poiInfo : infos) {
 				System.out.println(
 						poiInfo.address + poiInfo.location + poiInfo.name);
@@ -131,6 +134,14 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				PoiInfo info = adapter.getDatas().get(position);
+				
+				
+				mPoiSearch.searchNearby(new PoiNearbySearchOption()
+						.keyword(info.address)
+						.location(info.location)
+						.sortType(PoiSortType.distance_from_near_to_far)
+						.pageNum(10)
+						.radius(1000));			
 				setMapLating(info.location, info.address);
 				showMap(info.location.latitude, info.location.longitude, info.address);
 				result.setText(info.address);
@@ -198,8 +209,15 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
 				.draggable(false); // 设置手势拖拽
 		// 将marker添加到地图上
 		myMarker = (Marker) (mBaiduMap.addOverlay(options));
-		if (firstLocation)
+		if (firstLocation) {
+			mPoiSearch.searchNearby(new PoiNearbySearchOption()
+					.keyword(bdLocation.getAddress().street)
+					.location(latLng)
+					.sortType(PoiSortType.distance_from_near_to_far)
+					.pageNum(10)
+					.radius(1000));			
 			showMap(latLng.latitude, latLng.longitude, bdLocation.getAddrStr());
+		}
 	}
 
 	private void setMapLating(LatLng latLng, String address) {
@@ -243,9 +261,10 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
 	private void searchLocation(String keyword) {
 		String city = getIntent().getStringExtra("city");
 		if (StringUtils.isEmpty(city)) {
-			city = "大连";
+			city = "大连市";
 		}
-		mPoiSearch.searchInCity((new PoiCitySearchOption()).city(city)
+		mPoiSearch.searchInCity((new PoiCitySearchOption())
+				.city(city)
 				.keyword(keyword).pageNum(10));
 	}
 
