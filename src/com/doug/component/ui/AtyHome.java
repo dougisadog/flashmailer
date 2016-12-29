@@ -9,6 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.baidu.tts.BaiduTTSManager;
 import com.bumptech.glide.Glide;
 import com.doug.AppConstants;
 import com.doug.component.bean.ADCycleItem;
@@ -140,6 +141,7 @@ public class AtyHome extends MenuActivity {
 					break;
 				case R.id.flleft : //左拉
 					toggle();
+					BaiduTTSManager.getInstance().speak("你好");
 					break;
 				case R.id.llright : //选城市
 					Intent i = new Intent(AtyHome.this, AtyCity.class);

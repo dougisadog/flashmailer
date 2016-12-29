@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.baidu.tts.BaiduTTSManager;
 import com.doug.component.error.ErrLogManager;
 import com.doug.component.service.LocationService;
 import com.doug.component.support.AppActivityLifecycleCallbacks;
@@ -33,6 +34,8 @@ public class FlashApplication extends Application {
 		super.onCreate();
 		CrashHandler crashHandler = CrashHandler.getInstance();
 		crashHandler.init(getApplicationContext());
+		
+		BaiduTTSManager.getInstance().init(getApplicationContext());
 		
         locationService = new LocationService(getApplicationContext());
         mVibrator =(Vibrator)getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
