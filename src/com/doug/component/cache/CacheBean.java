@@ -20,6 +20,7 @@ import com.doug.component.bean.jsonbean.User;
 import com.doug.component.support.ApkInfo;
 import com.doug.component.utils.ApplicationUtil;
 import com.louding.frame.KJDB;
+import com.tencent.mm.sdk.modelbase.BaseResp;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -79,6 +80,8 @@ public class CacheBean {
 	private List<CItem> currentItems = new ArrayList<CItem>(); //当前表情页面数据
 	
 	private BDLocation myBDLocation;
+	
+	private BaseResp wxResp;
 	
 	public List<UserSearch> getSearches() {
 		return searches;
@@ -182,6 +185,14 @@ public class CacheBean {
 
 	public void setMyBDLocation(BDLocation myBDLocation) {
 		this.myBDLocation = myBDLocation;
+	}
+
+	public BaseResp getWxResp() {
+		return wxResp;
+	}
+
+	public void setWxResp(BaseResp wxResp) {
+		this.wxResp = wxResp;
 	}
 
 
