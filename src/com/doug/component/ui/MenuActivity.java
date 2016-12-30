@@ -85,6 +85,7 @@ public class MenuActivity extends SlidingFragmentActivity implements ScreenState
         findViewById(R.id.remainAccount).setOnClickListener(onMenuClickListener);
         findViewById(R.id.charge).setOnClickListener(onMenuClickListener);
         
+        findViewById(R.id.rlTTS).setOnClickListener(onMenuClickListener);
         
         
 		SlidingMenu sm = getSlidingMenu();
@@ -141,6 +142,10 @@ public class MenuActivity extends SlidingFragmentActivity implements ScreenState
 					break;
 				case R.id.charge: //充值
 					break;
+				case R.id.rlTTS: //充值
+					startActivity(new Intent(MenuActivity.this, AtyTTS.class));
+					break;
+					
 			}
 		}
 		

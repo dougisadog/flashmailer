@@ -68,6 +68,8 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
 	private Marker cMaker; // 当前标识
 
 	private AdapterLocationSearch adapter;
+	
+	private LatLng resultLocation;
 
 	/**
 	 * 位置查询回调
@@ -144,6 +146,7 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
 						.radius(1000));			
 				setMapLating(info.location, info.address);
 				showMap(info.location.latitude, info.location.longitude, info.address);
+				resultLocation = info.location;
 				result.setText(info.address);
 
 			}
@@ -275,6 +278,10 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
 				String finalResult = result.getText().toString();
 				Intent i = getIntent();
 				i.putExtra("finalResult", finalResult);
+				if (null != resultLocation) {
+					i.putExtra("locationLatitude", resultLocation.latitude);
+					i.putExtra("locationLongitude", resultLocation.longitude);
+				}
 				setResult(10001, i);
 				finish();
 				break;

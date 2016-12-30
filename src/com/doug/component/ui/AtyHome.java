@@ -1,5 +1,6 @@
 package com.doug.component.ui;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -9,6 +10,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.utils.DistanceUtil;
 import com.baidu.tts.BaiduTTSManager;
 import com.bumptech.glide.Glide;
 import com.doug.AppConstants;
@@ -36,6 +39,7 @@ import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ImageView.ScaleType;
@@ -61,6 +65,12 @@ public class AtyHome extends MenuActivity {
 	private MutiCycleViewHome mcv;
 	private int adHeight;
 	private String currentArea = "";
+	
+	private LatLng fromLocation;
+	private LatLng toLocation;
+	
+	private TextView mPrice, mDetail;
+	private RelativeLayout rlResult;
 	
 
 	@Override
@@ -96,6 +106,10 @@ public class AtyHome extends MenuActivity {
 		txtFrom = (TextView) findViewById(R.id.txtFrom);
 		txtTo = (TextView) findViewById(R.id.txtTo);
 		
+		mPrice = (TextView) findViewById(R.id.price);
+		mDetail = (TextView) findViewById(R.id.detail);
+		rlResult = (RelativeLayout) findViewById(R.id.rlResult);
+		
 		
 		orderWeight = getResources().getStringArray(R.array.orderWeight);
 		adContainer = (LinearLayout) findViewById(R.id.adContainer);
@@ -108,6 +122,22 @@ public class AtyHome extends MenuActivity {
 		mcv = new MutiCycleViewHome(this);
 		mcv.setLayoutParams(params);
 		adContainer.addView(mcv);
+	}
+	
+	private void refreshResult() {
+		if (null != fromLocation && null != toLocation) {
+			double d = DistanceUtil.getDistance(fromLocation, toLocation)/1000;
+			BigDecimal b = new BigDecimal(d);
+			double f1 = b.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue(); 
+			String price = (10 + currentWeightIndex * 2 + ((int)f1*100 * 3)/100) + "元";
+			mPrice.setText(price);
+			mDetail.setText(f1 + "km," + orderWeight[currentWeightIndex]);
+			rlResult.setVisibility(View.VISIBLE);
+		}
+		else {
+			rlResult.setVisibility(View.GONE);
+		}
+		
 	}
 
 	@Override
@@ -141,7 +171,6 @@ public class AtyHome extends MenuActivity {
 					break;
 				case R.id.flleft : //左拉
 					toggle();
-					BaiduTTSManager.getInstance().speak("你好");
 					break;
 				case R.id.llright : //选城市
 					Intent i = new Intent(AtyHome.this, AtyCity.class);
@@ -155,6 +184,7 @@ public class AtyHome extends MenuActivity {
 					}
 					currentWeightIndex++;
 					txtWeight.setText(orderWeight[currentWeightIndex]);
+					refreshResult();
 					break;
 				case R.id.minus :   //减重
 					if (currentWeightIndex == 0) {
@@ -163,6 +193,7 @@ public class AtyHome extends MenuActivity {
 					}
 					currentWeightIndex--;
 					txtWeight.setText(orderWeight[currentWeightIndex]);
+					refreshResult();
 					break;
 				case R.id.orderTime :   //预约时间
 						dialogWheel = new DialogOrderTimeFragment(new CallBackDialogCitiesWheel() {
@@ -330,6 +361,8 @@ public class AtyHome extends MenuActivity {
 	@Override
 	protected void onActivityResult(int req, int res, Intent intent) {
 		if (null == intent) return;
+		double la = intent.getDoubleExtra("locationLatitude", 0);
+		double lo = intent.getDoubleExtra("locationLongitude", 0);
 		switch (req) {
 		case 1000:
 			String cityName = intent.getStringExtra("city");
@@ -340,14 +373,18 @@ public class AtyHome extends MenuActivity {
 			break;
 		case 999:
 			String from = intent.getStringExtra("finalResult");
-			if (!StringUtils.isEmpty(from)) {
+			if (!StringUtils.isEmpty(from) && la != 0 && lo != 0) {
 				txtFrom.setText(from);
+				fromLocation =new LatLng(la, lo);
+				refreshResult();
 			}
 			break;
 		case 998:
 			String to = intent.getStringExtra("finalResult");
-			if (!StringUtils.isEmpty(to)) {
+			if (!StringUtils.isEmpty(to) && la != 0 && lo != 0) {
 				txtTo.setText(to);
+				toLocation = new LatLng(la, lo);
+				refreshResult();
 			}
 			break;
 			

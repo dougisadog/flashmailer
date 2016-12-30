@@ -64,6 +64,12 @@
             android:screenOrientation="portrait" >
         </activity>
                 <activity
+            android:name="com.doug.component.ui.AtyTTS"
+            android:launchMode="standard"
+            android:screenOrientation="portrait" >
+        </activity>
+        
+                <activity
             android:name="com.doug.component.ui.OrderListActivity"
             android:launchMode="standard"
             android:screenOrientation="portrait" >

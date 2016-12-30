@@ -31,6 +31,8 @@ public class AppConstants {
 	public static final int PRODUCT_STATUS_ON_SALE = 5;// 正在售卖
 	
 	public static final float BANNER_SCALE = 2.0f; // 长宽比
+	
+	public static final long HOME_PAGE_LEAST_TIME = 3* 1000; // 长宽比
 
 	/**
 	 * 返回成功

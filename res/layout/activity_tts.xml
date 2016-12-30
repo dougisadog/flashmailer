@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+        <LinearLayout
+        android:id="@+id/headLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/header" />
+    </LinearLayout>
+    
+        <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        
+        <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="随机数范围"/>
+       
+    
+    <EditText 
+        android:id="@+id/txtContent"
+         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入语音内容"
+        android:inputType="number"
+        android:text="100"/>
+     </LinearLayout>
+     
+              <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        
+        <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="时间间隔(s)"/>
+       
+    
+    <EditText 
+        android:id="@+id/delay"
+         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="请输入间隔"
+        android:text="3"/>
+     </LinearLayout>
+    
+    <TextView
+            android:id="@+id/btn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/page_line_btn"
+            android:layout_marginLeft = "30dp"
+            android:layout_marginRight = "30dp"
+            
+            android:background="@drawable/btn_blue"
+            android:gravity="center"
+            android:text="speak"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_app" />
+    
+    <TextView
+            android:id="@+id/btnStop"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/page_line_btn"
+            android:layout_marginLeft = "30dp"
+            android:layout_marginRight = "30dp"
+            
+            android:background="@drawable/btn_blue"
+            android:gravity="center"
+            android:text="stop"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_app" />
+    
+</LinearLayout>

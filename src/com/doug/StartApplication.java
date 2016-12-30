@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.os.Handler;
 import android.view.View;
 
 import java.io.File;
@@ -32,10 +33,12 @@ import com.doug.flashmailer.R;
 public class StartApplication extends KJActivity {
 	
 	private KJHttp kjh;
+	private long current;
 
 	@Override
 	public void setRootView() {
 		setContentView(R.layout.activity_start);
+		current = System.currentTimeMillis();
 	}
 	
 	/**
@@ -190,19 +193,33 @@ public class StartApplication extends KJActivity {
 		// }
 		// });
 		AppVariables.needGesture = true;
-		Intent mainIntent = null;
+		final Intent mainIntent = new Intent();
 		// mainIntent = new Intent(StartApplication.this,
 		// GuideActivity.class);// 引导页
 		MainAD ad = CacheBean.getInstance().getAd();
 		if (null == ad || StringUtils.isEmpty(ad.getImg())) {
-			mainIntent = new Intent(StartApplication.this, AtyHome.class);
+			mainIntent.setClass(StartApplication.this, AtyHome.class);
 		}
 		else {
-			mainIntent = new Intent(StartApplication.this, AtyMainAD.class);
+			mainIntent.setClass(StartApplication.this, AtyMainAD.class);
 		}
 		mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		StartApplication.this.startActivity(mainIntent);
-		StartApplication.this.finish();
+		long lastTime = System.currentTimeMillis() - current;
+		if (lastTime > AppConstants.HOME_PAGE_LEAST_TIME) {
+			StartApplication.this.startActivity(mainIntent);
+			StartApplication.this.finish();
+		}
+		else {
+			new Handler().postDelayed(new Runnable() {
+				
+				@Override
+				public void run() {
+					StartApplication.this.startActivity(mainIntent);
+					StartApplication.this.finish();
+					
+				}
+			}, AppConstants.HOME_PAGE_LEAST_TIME - lastTime);
+		}
 	}
 	
 	public static boolean parse = false;

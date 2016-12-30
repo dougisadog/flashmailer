@@ -1,5 +1,6 @@
 package com.doug.component.adapter;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -93,10 +94,12 @@ public class AdapterLocationSearch extends ArrayAdapter {
 			holder.tDistance.setText("暂无数据");
 		}
 		else {
+			 
 			LatLng my = new LatLng(myBDLocation.getLatitude(), myBDLocation.getLongitude());
 			double d = DistanceUtil.getDistance(my, item.location)/1000;
-			d=((int)(d*100))/100;
-			holder.tDistance.setText(d + "km");
+			BigDecimal b = new BigDecimal(d);
+			double f1 = b.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue(); 
+			holder.tDistance.setText(f1 + "km");
 		}
 		return convertView;
 	}

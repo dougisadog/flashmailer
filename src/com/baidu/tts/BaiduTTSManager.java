@@ -20,6 +20,7 @@ public class BaiduTTSManager implements SpeechSynthesizerListener{
 	
 	private static BaiduTTSManager manager;
 	private Context context;
+	private boolean isFinish = true;
 	
 	  private SpeechSynthesizer mSpeechSynthesizer;
 	    private String mSampleDirPath;
@@ -166,6 +167,7 @@ public class BaiduTTSManager implements SpeechSynthesizerListener{
 	        if (TextUtils.isEmpty(text)) {
 	            text = "欢迎使用百度语音合成SDK,百度语音为你提供支持。";
 	        }
+	        setFinish(false);
 	        int result = this.mSpeechSynthesizer.speak(text);
 	        if (result < 0) {
 	            toPrint("error,please look up error code in doc or URL:http://yuyin.baidu.com/docs/tts/122 ");
@@ -192,6 +194,7 @@ public class BaiduTTSManager implements SpeechSynthesizerListener{
 	@Override
 	public void onSpeechFinish(String utteranceId) {
 		toPrint("onSpeechFinish utteranceId=" + utteranceId);
+		setFinish(true);
 	}
 
 	/**
@@ -240,5 +243,13 @@ public class BaiduTTSManager implements SpeechSynthesizerListener{
     private void toPrint(String str) {
         System.out.println(str);
     }
+
+	public boolean isFinish() {
+		return isFinish;
+	}
+
+	private void setFinish(boolean isFinish) {
+		this.isFinish = isFinish;
+	}
 
 }
