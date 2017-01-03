@@ -43,6 +43,8 @@ import com.louding.frame.utils.StringUtils;
  * 
  * @author kymjs(kymjs123@gmail.com)
  * @version 1.3
+ * 
+ * 当进行文件传递时 同事携带的参数 只支持简单类型 并且value 满足toString()
  */
 public class HttpParams {
 //    private ConcurrentHashMap<String, String> urlParams;
@@ -191,7 +193,11 @@ public class HttpParams {
         return entity;
     }
 
-    /**
+    public ConcurrentHashMap<String, Object> getUrlParams() {
+		return urlParams;
+	}
+
+	/**
      * String的参数集，如果参数仅有String而没有File时，为了效率你应该使用KJStringParams
      */
 //    protected List<BasicNameValuePair> getParamsList() {

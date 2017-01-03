@@ -25,6 +25,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -211,6 +212,14 @@ public class KJHttp {
             BufferedReader reader = null;
             StringBuilder respond = new StringBuilder();
             try {
+            	if (params.haveFile() && params.getUrlParams().size() > 0) {
+					StringBuffer buffer = new StringBuffer(uri);
+					buffer.append("?");
+            		for (Entry<String, Object> entry : params.getUrlParams().entrySet()) {
+            			buffer.append(entry.getKey() + "=" + entry.getValue().toString() + "&");
+					}
+            		uri = buffer.substring(0, buffer.length() -1);
+            	}
                 HttpURLConnection conn = openConnection(requestMethod, uri,
                         params);
                 respondMsg = conn.getResponseMessage();
