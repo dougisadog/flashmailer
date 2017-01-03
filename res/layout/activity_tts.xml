@@ -79,4 +79,40 @@
             android:textColor="@color/white"
             android:textSize="@dimen/font_app" />
     
+    <ImageView 
+        android:id="@+id/pickImg"
+        android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_launcher"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="fitCenter"/>
+    
+    <TextView
+            android:id="@+id/btnPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/page_line_btn"
+            android:layout_marginLeft = "30dp"
+            android:layout_marginRight = "30dp"
+            
+            android:background="@drawable/btn_blue"
+            android:gravity="center"
+            android:text="Photo"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_app" />
+    
+        <TextView
+            android:id="@+id/btnImgSub"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/page_line_btn"
+            android:layout_marginLeft = "30dp"
+            android:layout_marginRight = "30dp"
+            
+            android:background="@drawable/btn_blue"
+            android:gravity="center"
+            android:text="ImgSub"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_app" />
+    
 </LinearLayout>
