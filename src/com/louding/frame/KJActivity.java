@@ -31,6 +31,7 @@ import com.louding.frame.ui.FrameActivity;
 import com.louding.frame.ui.I_KJActivity;
 import com.louding.frame.ui.KJActivityStack;
 import com.louding.frame.utils.KJLoger;
+import com.umeng.message.PushAgent;
 
 public abstract class KJActivity extends FrameActivity implements ScreenStateListener, I_KJActivity{
 
@@ -57,6 +58,7 @@ public abstract class KJActivity extends FrameActivity implements ScreenStateLis
         FlashApplication.getInstance().addStackActivity(this);
         KJActivityStack.create().addActivity(this);
         KJLoger.state(this.getClass().getName(), "---------onCreat ");
+        PushAgent.getInstance(this).onAppStart();
         super.onCreate(savedInstanceState);
     }
 

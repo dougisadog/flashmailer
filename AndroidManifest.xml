@@ -138,20 +138,21 @@
         </activity>
 
         <!-- UMENG -->
-        <service android:name="com.nangua.xiaomanjflc.service.MyPushIntentService" />
 
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="57dde83ee0f55a08d20013b0" >
+            android:value="586b613baed1791059000cf0" >
         </meta-data>
         <meta-data
             android:name="UMENG_MESSAGE_SECRET"
-            android:value="a679b666c2bd22ae2869246cadf10c3d" >
+            android:value="3d0a728222c730c9292cb670779b5cea" >
         </meta-data>
+        <!-- 
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="BAIDU" >
         </meta-data>
+         -->
         <meta-data
             android:name="BDAPPID"
             android:value="8619241" />
@@ -192,9 +193,15 @@
             </intent-filter>
         </service>
 
+        <!-- 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="lES8YVHwbe4oUcRvXEie6SKugvGpZVfg" />
+         -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="hWStmUnFWsG5XEwgXtRO5zur0MvFcWIP" />
+        
         
          <!-- 微信支付 --> 
         <activity 

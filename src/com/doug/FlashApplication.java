@@ -52,7 +52,7 @@ public class FlashApplication extends Application {
 		} 
 
 		// 推送消息SDK 初始化
-//		UmengManager.getInstance().initPushInfo(this);
+		UmengManager.getInstance().initPushInfo(this);
 		//false 正式 true 集成测试
 //		UmengManager.getInstance().initAnalytics(this, true);
 //		String info = UmengManager.getDeviceInfo(this);
