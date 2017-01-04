@@ -9,8 +9,13 @@ import com.doug.component.error.ErrLogManager;
 import com.doug.component.service.LocationService;
 import com.doug.component.support.AppActivityLifecycleCallbacks;
 import com.doug.component.support.CrashHandler;
+import com.doug.component.support.MopMessageManager;
 import com.doug.component.support.ScreenObserver;
-import com.louding.frame.ui.AnnotateUtil;
+import com.doug.component.utils.UILImageLoader;
+import com.qiyukf.unicorn.api.SavePowerConfig;
+import com.qiyukf.unicorn.api.StatusBarNotificationConfig;
+import com.qiyukf.unicorn.api.Unicorn;
+import com.qiyukf.unicorn.api.YSFOptions;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -22,6 +27,8 @@ import android.os.Message;
 import android.os.Vibrator;
 import android.webkit.WebView;
 import android.widget.Toast;
+import cn.smssdk.EventHandler;
+import cn.smssdk.SMSSDK;
 
 @SuppressLint("NewApi")
 public class FlashApplication extends Application {
@@ -35,7 +42,10 @@ public class FlashApplication extends Application {
 		CrashHandler crashHandler = CrashHandler.getInstance();
 		crashHandler.init(getApplicationContext());
 		
+		//百度语音
 		BaiduTTSManager.getInstance().init(getApplicationContext());
+		// 网易旗鱼
+		Unicorn.init(this, "868207d1fde8fc48fd94eccd94cb5cb7", options(), new UILImageLoader());
 		
         locationService = new LocationService(getApplicationContext());
         mVibrator =(Vibrator)getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
@@ -57,10 +67,19 @@ public class FlashApplication extends Application {
 //		UmengManager.getInstance().initAnalytics(this, true);
 //		String info = UmengManager.getDeviceInfo(this);
 //		AnnotateUtil.writeErr(info);
-
+		
+		//短信API
+		MopMessageManager.getInstance().init(this);
 		// 监听屏幕
 		observer = new ScreenObserver();
 
+	}
+	
+	   private YSFOptions options() {
+	        YSFOptions options = new YSFOptions();
+	        options.statusBarNotificationConfig = new StatusBarNotificationConfig();
+	        options.savePowerConfig = new SavePowerConfig();
+	        return options;
 	}
 
 

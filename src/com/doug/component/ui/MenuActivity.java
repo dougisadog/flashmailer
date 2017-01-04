@@ -6,6 +6,8 @@ import com.doug.AppVariables;
 import com.doug.FlashApplication;
 import com.doug.component.support.ScreenObserver.ScreenStateListener;
 import com.doug.flashmailer.R;
+import com.qiyukf.unicorn.api.ConsultSource;
+import com.qiyukf.unicorn.api.Unicorn;
 import com.umeng.message.PushAgent;
 import com.yanshang.yilicai.lib.SlidingMenu;
 import com.yanshang.yilicai.lib.app.SlidingFragmentActivity;
@@ -88,6 +90,7 @@ public class MenuActivity extends SlidingFragmentActivity implements ScreenState
         findViewById(R.id.charge).setOnClickListener(onMenuClickListener);
         
         findViewById(R.id.rlTTS).setOnClickListener(onMenuClickListener);
+        findViewById(R.id.rlQY).setOnClickListener(onMenuClickListener);
         
         
 		SlidingMenu sm = getSlidingMenu();
@@ -144,14 +147,35 @@ public class MenuActivity extends SlidingFragmentActivity implements ScreenState
 					break;
 				case R.id.charge: //充值
 					break;
-				case R.id.rlTTS: //充值
+				case R.id.rlTTS: //语音
 					startActivity(new Intent(MenuActivity.this, AtyTTS.class));
+					break;
+				case R.id.rlQY: //客服
+					startForHelper();
 					break;
 					
 			}
 		}
 		
 	};
+	
+	private void startForHelper() {
+		 String title = "客服系统";
+		 // 设置访客来源，标识访客是从哪个页面发起咨询的，用于客服了解用户是从什么页面进入三个参数分别为来源页面的url，来源页面标题，来源页面额外信息（可自由定义）
+		 // 设置来源后，在客服会话界面的"用户资料"栏的页面项，可以看到这里设置的值。
+		 ConsultSource source = new ConsultSource(this.getClass().getSimpleName(), "侧滑栏", "custom information string");
+//		 source.staffId = 97698l;
+//		 source.groupId = 268736l;
+//		 source.robotFirst = true;
+		 if (!Unicorn.isServiceAvailable()) {
+			 System.out.println("服务不可用");
+		 }
+		 // 请注意： 调用该接口前，应先检查Unicorn.isServiceAvailable(), 如果返回为false，该接口不会有任何动作
+		 Unicorn.openServiceActivity(this, // 上下文
+		                         title, // 聊天窗口的标题
+		                         source // 咨询的发起来源，包括发起咨询的url，title，描述信息等
+		                          );
+	}
 
     protected void dealWithException(Exception e) {
         Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();

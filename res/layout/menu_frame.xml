@@ -392,6 +392,42 @@
                     android:src="@drawable/account_goto" />
             </RelativeLayout>
             
+              <RelativeLayout
+                android:id="@+id/rlQY"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imgQY"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/account_invest" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/imgQY"
+                    android:text="网易七鱼demo"
+                    android:textColor="@color/white" />
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/account_goto" />
+            </RelativeLayout>
+            
         </LinearLayout>
     </ScrollView>
 

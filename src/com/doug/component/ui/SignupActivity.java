@@ -17,11 +17,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import cn.smssdk.EventHandler;
+import cn.smssdk.OnSendMessageHandler;
+import cn.smssdk.SMSSDK;
 
 import com.doug.AppConstants;
 import com.doug.component.support.InfoManager;
 import com.doug.component.support.UIHelper;
 import com.doug.component.support.InfoManager.TaskCallBack;
+import com.doug.component.support.MopMessageManager;
 import com.doug.flashmailer.R;
 import com.louding.frame.KJActivity;
 import com.louding.frame.KJDB;
@@ -68,6 +72,30 @@ public class SignupActivity extends KJActivity {
 
 	private KJHttp kjh;
 	private KJDB kjdb;
+	private String currentCode;
+	
+	private EventHandler eh = new EventHandler(){
+
+		@Override
+		public void afterEvent(int event, int result, Object data) {
+			System.out.println(data.toString());
+
+		   if (result == SMSSDK.RESULT_COMPLETE) {
+			//回调完成
+			if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
+
+            //提交验证码成功
+			}else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE){
+				
+		    //获取验证码成功
+			}else if (event ==SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES){
+            //返回支持发送验证码的国家列表
+            } 
+          }else{                                                                 
+             ((Throwable)data).printStackTrace(); 
+      }
+  } 
+}; 
 
 	@Override
 	public void setRootView() {
@@ -78,11 +106,28 @@ public class SignupActivity extends KJActivity {
 	@Override
 	public void initData() {
 		super.initData();
+		String[] country = MopMessageManager.getInstance().getCurrentCountry();
+		if (country != null) {
+			currentCode = country[1];
+		}
+		
 		hascode = false;
 		sid = "";
 		captcha = "";
 		kjh = new KJHttp();
 		kjdb = KJDB.create(this);
+	}
+	
+	
+
+	public void onResume() {
+		SMSSDK.registerEventHandler(eh);
+		super.onResume();
+	}
+
+	public void onDestroy() {
+		SMSSDK.unregisterEventHandler(eh);
+		super.onDestroy();
 	}
 
 	@Override
@@ -221,58 +266,33 @@ public class SignupActivity extends KJActivity {
 		});
 	}
 	
+	
+//	private void checkCode() {
+//		SMSSDK.submitVerificationCode(currentCode, tel, code);
+//	}
+	
 
 	private void getCode()
 	{
 		out.println("My: 获取手机验证码");
 		
-		HttpParams params = new HttpParams();
-		params.put("phone", tel);
-		params.put("sid", sid);
-		params.put("captcha", captcha);
-		
-		kjh.post(AppConstants.GETCODE, params, new HttpCallBack(SignupActivity.this) 
-		{
+		SMSSDK.getVerificationCode(currentCode, tel, new OnSendMessageHandler() {
+			
 			@Override
-			public void failure(JSONObject ret) 
-			{								
-				super.failure(ret);
-				
-				out.println("My: 获取手机验证码失败");
-				
-				try 
-				{
-					ret.getJSONObject("body");
-					sid = ret.getString("sid");
-					
-//					if (o.getBoolean("needCaptcha")) 
-//					{
-//						mVrify1.setVisibility(View.VISIBLE);
-//						mVrify1.setVisibility(View.VISIBLE);
-//						
-//						getCapture();
-//					}
-				} 
-				catch (JSONException e) 
-				{
-					e.printStackTrace();
-				}
-			}
-
-			@Override
-			public void success(JSONObject ret) 
-			{							
-				super.success(ret);
-				
-				out.println("My: 获取手机验证码成功");
-				out.println("My: JSONObject ret => " + ret);
-				
-				mHint.setVisibility(View.VISIBLE);
-				mHint.setText(R.string.signup_code_success);
-				hascode = true;
-				buttonHandle.post(buttonControl);
+			public boolean onSendMessage(String arg0, String arg1) {
+						runOnUiThread(new Runnable() {
+							public void run() {
+								out.println("My: 获取手机验证码成功");
+								mHint.setVisibility(View.VISIBLE);
+								mHint.setText(R.string.signup_code_success);
+								hascode = true;
+								buttonHandle.post(buttonControl);
+							}
+						});
+				return false;
 			}
 		});
+		
 	}
 
 	Runnable buttonControl = new Runnable() {
