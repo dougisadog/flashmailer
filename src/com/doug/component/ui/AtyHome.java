@@ -34,8 +34,10 @@ import com.louding.frame.utils.StringUtils;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -122,6 +124,13 @@ public class AtyHome extends MenuActivity {
 		mcv = new MutiCycleViewHome(this);
 		mcv.setLayoutParams(params);
 		adContainer.addView(mcv);
+		
+		String token = CacheBean.getInstance().getToken();
+		if (!TextUtils.isEmpty(token)) {
+			EditText eToken = (EditText) findViewById(R.id.deviceToken);
+			eToken.setText(token);
+		}
+		
 	}
 	
 	private void refreshResult() {

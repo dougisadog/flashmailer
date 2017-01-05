@@ -47,6 +47,7 @@ public class FlashApplication extends Application {
 		// 网易旗鱼
 		Unicorn.init(this, "868207d1fde8fc48fd94eccd94cb5cb7", options(), new UILImageLoader());
 		
+		//百度地图
         locationService = new LocationService(getApplicationContext());
         mVibrator =(Vibrator)getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
         SDKInitializer.initialize(getApplicationContext()); 

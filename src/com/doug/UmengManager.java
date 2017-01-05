@@ -46,6 +46,7 @@ public class UmengManager {
 			@Override
 			public void onSuccess(String deviceToken) {
 				// 注册成功会返回device token
+				CacheBean.getInstance().setToken(deviceToken);
 				System.out.println("设备token:" + deviceToken);
 			}
 

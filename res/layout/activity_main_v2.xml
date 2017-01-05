@@ -215,6 +215,14 @@
             android:text="立即取件"
             android:layout_gravity="center_horizontal"
             android:textSize="@dimen/font_num_v2"/>
+        
+        <EditText 
+            android:id="@+id/deviceToken"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/orange"
+            android:text="token"/>
         </LinearLayout>
         
         <RelativeLayout

@@ -57,6 +57,83 @@ public class InfoManager {
 		
 	}
 	
+	public void loginByAuth(final Context context, final String openid,
+			final int type, final TaskCallBack taskCallBack) {
+		// 注册成功后登录
+		KJHttp kjh = new KJHttp();
+		HttpParams params = new HttpParams();
+		params.put("sid", "");
+		params.put("openid", openid);
+		params.put("type", type);
+		String verionName = ApplicationUtil.getApkInfo(context).versionName;
+		params.put("loginVersionName", "Android" + verionName);
+		kjh.post(AppConstants.SIGNAUTH, params, new HttpCallBack(context) {
+			@Override
+			public void success(JSONObject ret) {
+				super.success(ret);
+				try {
+					JSONObject o = ret.getJSONObject("body");
+
+					// 基础参数更新
+					String sid = o.getString("sid");
+					int uid = o.getInt("uid");
+					AppVariables.uid = uid;
+					AppVariables.sid = sid;
+					AppVariables.tel = o.getString("tel");
+					AppVariables.isSignin = true;
+					AppConfig.getAppConfig(context).set(AppConfig.SID, sid);
+
+					// 账号数据本地数据库存储
+					KJDB kjdb = KJDB.create(context);
+					List<UserConfig> userConfigs = kjdb.findAllByWhere(
+							UserConfig.class, "uid=" + AppVariables.uid);
+					UserConfig userConfig = null;
+					if (userConfigs.size() > 0) {
+						userConfig = userConfigs.get(0);
+						userConfig.setTel(AppVariables.tel);
+						userConfig
+								.setLastGestureCheckTime(new Date().getTime());
+						kjdb.update(userConfig);
+						AppVariables.needGesture = userConfig.isNeedGesture();
+					}
+					if (userConfig == null) {
+						userConfig = new UserConfig();
+						userConfig.setUid(uid);
+						userConfig.setTel(AppVariables.tel);
+						userConfig.setNeedGesture(false);
+						userConfig
+								.setLastGestureCheckTime(new Date().getTime());
+						kjdb.save(userConfig);
+					}
+
+					// 清空webview的cookie
+					CacheBean.syncCookie(context);
+					AppVariables.forceUpdate = true;
+					// Umeng账号统计
+					taskCallBack.taskSuccess();
+					// getInfo(context, taskCallBack);
+				} catch (JSONException e) {
+					this.onFinish();
+					taskCallBack.taskFail(e.toString(), TaskCallBack.TXT);
+					e.printStackTrace();
+				}
+			}
+
+			@Override
+			public void onFinish() {
+				taskCallBack.afterTask();
+				super.onFinish();
+			}
+
+			@Override
+			public void failure(JSONObject ret) {
+				taskCallBack.taskFail(ret.toString(), TaskCallBack.JSON);
+				super.failure(ret);
+			}
+
+		});
+	}
+	
 	/**
 	 * 注册请求
 	 * @param context

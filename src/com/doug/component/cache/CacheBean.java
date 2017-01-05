@@ -83,6 +83,8 @@ public class CacheBean {
 	
 	private BaseResp wxResp;
 	
+	private String token;
+	
 	public List<UserSearch> getSearches() {
 		return searches;
 	}
@@ -193,6 +195,14 @@ public class CacheBean {
 
 	public void setWxResp(BaseResp wxResp) {
 		this.wxResp = wxResp;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 
