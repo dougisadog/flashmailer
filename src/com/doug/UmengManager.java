@@ -40,6 +40,7 @@ public class UmengManager {
 
 	public void initPushInfo(Context context) {
 		PushAgent mPushAgent = PushAgent.getInstance(context);
+		mPushAgent.setNotificaitonOnForeground(true);
 		// 注册推送服务，每次调用register方法都会回调该接口
 		mPushAgent.register(new IUmengRegisterCallback() {
 

@@ -148,5 +148,10 @@ public class AppConstants {
 
 	public static final String SIGNAUTH = null; 
 	
+	//百度地图
+	public static final String LBS_AK = "59c534a42dc1fc10c3092a15af8620ee";
+	
+	public static final  int GEO_TABLE_ID = 161406;
+	
 
 }

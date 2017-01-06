@@ -5,6 +5,13 @@ import java.util.List;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
+import com.baidu.mapapi.cloud.CloudListener;
+import com.baidu.mapapi.cloud.CloudManager;
+import com.baidu.mapapi.cloud.CloudPoiInfo;
+import com.baidu.mapapi.cloud.CloudRgcResult;
+import com.baidu.mapapi.cloud.CloudSearchResult;
+import com.baidu.mapapi.cloud.DetailSearchResult;
+import com.baidu.mapapi.cloud.NearbySearchInfo;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
@@ -15,6 +22,8 @@ import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.model.LatLngBounds;
+import com.baidu.mapapi.model.LatLngBounds.Builder;
 import com.baidu.mapapi.search.core.PoiInfo;
 import com.baidu.mapapi.search.poi.OnGetPoiSearchResultListener;
 import com.baidu.mapapi.search.poi.PoiCitySearchOption;
@@ -24,8 +33,10 @@ import com.baidu.mapapi.search.poi.PoiNearbySearchOption;
 import com.baidu.mapapi.search.poi.PoiResult;
 import com.baidu.mapapi.search.poi.PoiSearch;
 import com.baidu.mapapi.search.poi.PoiSortType;
+import com.doug.AppConstants;
 import com.doug.FlashApplication;
 import com.doug.component.adapter.AdapterLocationSearch;
+import com.doug.component.bean.bdmap.MyPoiInfo;
 import com.doug.component.cache.CacheBean;
 import com.doug.component.service.LocationService;
 import com.doug.flashmailer.R;
@@ -49,7 +60,7 @@ import android.widget.TextView;
  * @author doug
  *
  */
-public class AtyLocationSearch extends KJActivity implements OnClickListener {
+public class AtyLocationSearch extends KJActivity implements OnClickListener, CloudListener {
 
 	private MapView mMapView;
 	private BaiduMap mBaiduMap;
@@ -77,20 +88,22 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
 	private OnGetPoiSearchResultListener poiListener = new OnGetPoiSearchResultListener() {
 		public void onGetPoiResult(PoiResult result) {
 			List<PoiInfo> infos = result.getAllPoi();
+			List<MyPoiInfo> myInfos = new ArrayList<MyPoiInfo>();
 			if (null == infos)
 				infos = new ArrayList<PoiInfo>();
 			for (PoiInfo poiInfo : infos) {
+				myInfos.add(new MyPoiInfo(poiInfo));
 				System.out.println(
 						poiInfo.address + poiInfo.location + poiInfo.name);
 			}
-			adapter.setDatas(infos);
+			adapter.setDatas(myInfos);
 			// 获取POI检索结果
 		}
 		public void onGetPoiDetailResult(PoiDetailResult result) {
 			// 获取Place详情页检索结果
 		}
 		@Override
-		public void onGetPoiIndoorResult(PoiIndoorResult arg0) {
+		public void onGetPoiIndoorResult(PoiIndoorResult result) {
 			// TODO Auto-generated method stub
 
 		}
@@ -138,12 +151,14 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
 				PoiInfo info = adapter.getDatas().get(position);
 				
 				
-				mPoiSearch.searchNearby(new PoiNearbySearchOption()
-						.keyword(info.address)
-						.location(info.location)
-						.sortType(PoiSortType.distance_from_near_to_far)
-						.pageNum(10)
-						.radius(1000));			
+				cloudSearchNearby(info.location.longitude + "," + info.location.latitude);
+                
+//				mPoiSearch.searchNearby(new PoiNearbySearchOption()
+//						.keyword(info.address)
+//						.location(info.location)
+//						.sortType(PoiSortType.distance_from_near_to_far)
+//						.pageNum(10)
+//						.radius(1000));			
 				setMapLating(info.location, info.address);
 				showMap(info.location.latitude, info.location.longitude, info.address);
 				resultLocation = info.location;
@@ -164,6 +179,19 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
 		setLocaton();
 		initMapView();
 		initLocation();
+		CloudManager.getInstance().init(this);
+	}
+	
+	private void cloudSearchNearby(String location) {
+		 NearbySearchInfo info = new NearbySearchInfo();
+         info.ak = AppConstants.LBS_AK;
+         info.geoTableId = AppConstants.GEO_TABLE_ID;
+         info.radius = 30000;
+         info.pageSize=10;
+//         info.location = "116.403689,39.914957";
+         info.location = location;
+         boolean m = CloudManager.getInstance().nearbySearch(info);
+         System.out.println(m);
 	}
 
 	/**
@@ -294,6 +322,7 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
 	@Override
 	protected void onDestroy() {
 		locationService.unregisterListener(mListener);
+		CloudManager.getInstance().destroy();
 		super.onDestroy();
 	}
 
@@ -414,5 +443,46 @@ public class AtyLocationSearch extends KJActivity implements OnClickListener {
 		}
 
 	};
+	
+	private void refreshCloudResult(List<CloudPoiInfo> cloudInfos) {
+        	List<MyPoiInfo> infos = new ArrayList<MyPoiInfo>();
+            if (cloudInfos != null && cloudInfos.size() > 0) {
+                for (int i = 0; i < cloudInfos.size(); i++ ) {
+                    CloudPoiInfo info = cloudInfos.get(i);
+                    infos.add(new MyPoiInfo(info));
+                }
+            }
+            adapter.setDatas(infos);
+	}
+
+	@Override
+	public void onGetCloudRgcResult(CloudRgcResult result, int error) {
+		if (result != null && error == 0) {
+			List<MyPoiInfo> infos = new ArrayList<MyPoiInfo>();
+			List<CloudPoiInfo> cloudInfos = result.customPois;
+			int size = Math.min(cloudInfos.size(), 10);
+			for (int i = 0; i < size; i++) {
+				infos.add(new MyPoiInfo(cloudInfos.get(i)));
+			}
+			if (size < 10) {
+				for (int i = 0; i < Math.min(result.pois.size(), 10-size); i++) {
+					infos.add(new MyPoiInfo(result.pois.get(i)));
+				}
+			}
+			adapter.setDatas(infos);
+		}
+	}
+
+	@Override
+	public void onGetDetailSearchResult(DetailSearchResult result, int error) {
+	}
+
+	@Override
+	public void onGetSearchResult(CloudSearchResult result, int error) {
+		if (result != null && error == 0) {
+			refreshCloudResult(result.poiList);
+		}
+
+	}
 
 }
