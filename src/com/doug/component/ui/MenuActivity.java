@@ -92,6 +92,14 @@ public class MenuActivity extends SlidingFragmentActivity implements ScreenState
         findViewById(R.id.rlTTS).setOnClickListener(onMenuClickListener);
         findViewById(R.id.rlQY).setOnClickListener(onMenuClickListener);
         
+        findViewById(R.id.rlCoupon).setOnClickListener(onMenuClickListener);
+        findViewById(R.id.rlBill).setOnClickListener(onMenuClickListener);
+        findViewById(R.id.rlPrice).setOnClickListener(onMenuClickListener);
+        findViewById(R.id.rlInvite).setOnClickListener(onMenuClickListener);
+        findViewById(R.id.rlQuestions).setOnClickListener(onMenuClickListener);
+        findViewById(R.id.rlReport).setOnClickListener(onMenuClickListener);
+        findViewById(R.id.rlAbout).setOnClickListener(onMenuClickListener);
+        
         
 		SlidingMenu sm = getSlidingMenu();
 		sm.setShadowWidthRes(R.dimen.shadow_width);
@@ -142,16 +150,40 @@ public class MenuActivity extends SlidingFragmentActivity implements ScreenState
 					startActivity(i);
 					break;
 				case R.id.transDetail: //订单信息
+					startActivity(new Intent(MenuActivity.this, AtyTransDetail.class));
 					break;
 				case R.id.remainAccount: //余额
+					startActivity(new Intent(MenuActivity.this, AtyAvailable.class));
 					break;
 				case R.id.charge: //充值
+					startActivity(new Intent(MenuActivity.this, AtyCharge.class));
 					break;
 				case R.id.rlTTS: //语音
 					startActivity(new Intent(MenuActivity.this, AtyTTS.class));
 					break;
 				case R.id.rlQY: //客服
 					startForHelper();
+					break;
+				case R.id.rlCoupon: //现金券
+					startActivity(new Intent(MenuActivity.this, AtyCoupon.class));
+					break;
+				case R.id.rlBill: //发票
+					startActivity(new Intent(MenuActivity.this, AtyBill.class));
+					break;
+				case R.id.rlInvite: //发票
+					startActivity(new Intent(MenuActivity.this, AtyInvite.class));
+					break;	
+				case R.id.rlPrice: //价格表
+					startActivity(new Intent(MenuActivity.this, AtyPrice.class));
+					break;
+				case R.id.rlQuestions: //常见问题
+					startActivity(new Intent(MenuActivity.this, AtyQuestions.class));
+					break;
+				case R.id.rlReport: //意见反馈
+					startActivity(new Intent(MenuActivity.this, AtyReport.class));
+					break;
+				case R.id.rlAbout: //关于我们
+					startActivity(new Intent(MenuActivity.this, AtyAbout.class));
 					break;
 					
 			}

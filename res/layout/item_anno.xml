@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_anno"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingBottom="@dimen/page_line"
+    android:paddingLeft="@dimen/page_left"
+    android:paddingRight="@dimen/page_right"
+    android:paddingTop="@dimen/page_line" >
+
+    <TextView
+        android:id="@+id/data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        
+        android:textColor="@color/font_gray"
+        android:textSize="@dimen/font_app" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/data"
+        
+        android:drawableLeft="@drawable/anno_circle"
+        android:drawablePadding="5dp"
+        android:singleLine="true"
+        android:textColor="@color/font_gray"
+        android:textSize="@dimen/font_app" />
+
+</RelativeLayout>

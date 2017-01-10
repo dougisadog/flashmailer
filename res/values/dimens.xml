@@ -47,14 +47,19 @@
     <dimen name="font_huge_v2">34sp</dimen>  <!-- app巨大文字 -->
     <dimen name="font_small_v2">10sp</dimen>
     
+     <dimen name="text_padding_left_v2">20dp</dimen>  <!-- 总页面左padding -->
     <dimen name="text_line_v2">7dp</dimen>  <!-- textview控件文字与底部间隔 -->
     <dimen name="text_small_line_v2">2dp</dimen>  <!-- textview控件文字与底部间隔 -->
+    <dimen name="component_line_v2">3dp</dimen>  <!-- textview控件文字与底部间隔 -->
+    <dimen name="component_btn_v2">30dp</dimen>  <!-- 总页面左padding -->
      <dimen name="page_left_v2">20dp</dimen>  <!-- 总页面左padding -->
     <dimen name="page_right_v2">20dp</dimen>  <!-- 总页面右padding -->
     <dimen name="page_top_v2">15dp</dimen>  <!-- 总页面上padding -->
     <dimen name="page_bottom_v2">15dp</dimen>  <!-- 总页面下padding -->
     <dimen name="text_top_v2">5dp</dimen>  <!-- 文字上padding -->
     <dimen name="text_bottom_v2">5dp</dimen>  <!-- 文字下padding -->
+    <dimen name="page_drawable">15dp</dimen>  <!-- 总页面textview文字和图片间隔 -->
+    <dimen name="text_button_v2">4dp</dimen>  <!-- 文字下padding -->
     
         <!-- menu -->
     <dimen name="shadow_width">15dp</dimen>

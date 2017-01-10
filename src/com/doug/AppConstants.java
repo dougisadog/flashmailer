@@ -152,6 +152,13 @@ public class AppConstants {
 	public static final String LBS_AK = "59c534a42dc1fc10c3092a15af8620ee";
 	
 	public static final  int GEO_TABLE_ID = 161406;
+
+	public static final String ABOUT_US = "http://www.baidu.com";
+
+		/**
+	 * 公告列表
+	 */
+	public static final String ANNOUNCE = HOST + "/article/announce";
 	
 
 }

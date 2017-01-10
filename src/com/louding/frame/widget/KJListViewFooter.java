@@ -15,6 +15,7 @@
  */
 package com.louding.frame.widget;
 
+import com.doug.flashmailer.R;
 
 import android.content.Context;
 import android.view.Gravity;
@@ -41,6 +42,7 @@ public class KJListViewFooter extends LinearLayout {
     }
 
     private String refreshing = "上拉查看更多";
+    private String ready = "松开载入更多";
 
     RelativeLayout contentView;
     private View progressBar;
@@ -55,6 +57,9 @@ public class KJListViewFooter extends LinearLayout {
      * 初始化底部组件
      */
     private void initView(Context context) {
+    	refreshing = context.getResources().getString(R.string.refresh_list_foot_refreshing);
+    	ready = context.getResources().getString(R.string.refresh_list_foot_ready);
+    	
         contentView = new RelativeLayout(context);
         contentView.setPadding(10, 10, 10, 10);
         contentView.setLayoutParams(new RelativeLayout.LayoutParams(
@@ -84,12 +89,12 @@ public class KJListViewFooter extends LinearLayout {
         progressBar.setVisibility(View.INVISIBLE);
         if (state == LoadMoreState.STATE_READY) {
             hintView.setVisibility(View.VISIBLE);
-            hintView.setText("松开载入更多");
+            hintView.setText(ready);
         } else if (state == LoadMoreState.STATE_LOADING) {
             progressBar.setVisibility(View.VISIBLE);
         } else {
             hintView.setVisibility(View.VISIBLE);
-            hintView.setText("上拉查看更多");
+            hintView.setText(refreshing);
         }
     }
 

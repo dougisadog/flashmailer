@@ -15,6 +15,7 @@
  */
 package com.louding.frame.widget;
 
+import com.doug.flashmailer.R;
 
 import android.content.Context;
 import android.view.Gravity;
@@ -59,6 +60,10 @@ public class KJListViewHeader extends LinearLayout {
 	 * 初始化组件
 	 */
 	private void initView(Context context) {
+		normal = context.getResources().getString(R.string.refresh_list_normal);
+		ready = context.getResources().getString(R.string.refresh_list_head_ready);
+		refreshing = context.getResources().getString(R.string.refresh_list_head_refreshing);
+		
 		// 初始情况，设置下拉刷新view高度为0
 		RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
 				LayoutParams.MATCH_PARENT, 0);

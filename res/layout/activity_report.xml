@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 关于一理财 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:orientation="vertical" >
+
+    <!-- 显示头部标题 -->
+
+    <LinearLayout
+        android:id="@+id/headLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/header" />
+    </LinearLayout>
+
+         <EditText
+                android:id="@+id/report"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="@dimen/component_line_v2"
+                android:background="@color/white"
+                android:gravity="top"
+                android:padding="20dp"
+                android:hint="@string/report_hint"
+                android:textColor="@color/font_gray_man"
+                android:textColorHint="@color/font_hint"
+                android:textSize="@dimen/font_hint_v2" />
+         
+         <TextView 
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/page_line_btn"
+            android:layout_marginLeft = "20dp"
+            android:layout_marginRight = "20dp"
+            android:background="@drawable/btn_blue"
+            android:gravity="center"
+            android:text="@string/btn_submit"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_app" />
+
+</LinearLayout>

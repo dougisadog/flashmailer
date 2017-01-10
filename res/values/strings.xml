@@ -73,4 +73,14 @@
     <string name="please_deleted_cache_dir">权限出错，无法读取存储空间</string>
 	<string name="ok">确定</string>
 	
+	    <!-- KJListView -->
+    <string name="refresh_list_normal">下拉立即刷新</string>
+    <string name="refresh_list_head_ready">松开立即刷新</string>
+    <string name="refresh_list_head_refreshing">数据正在刷新…</string>
+    <string name="refresh_list_foot_refreshing">上拉立即加载更多数据</string>
+    <string name="refresh_list_foot_ready">松开立即加载更多数据</string>
+	
+	<string name="support_tel_text">400-844-5558</string>
+	<string name="support_tel">4008445558</string>
+	
 </resources>
