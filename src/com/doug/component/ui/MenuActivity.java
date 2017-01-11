@@ -8,7 +8,7 @@ import com.doug.component.support.ScreenObserver.ScreenStateListener;
 import com.doug.flashmailer.R;
 import com.qiyukf.unicorn.api.ConsultSource;
 import com.qiyukf.unicorn.api.Unicorn;
-import com.umeng.message.PushAgent;
+//import com.umeng.message.PushAgent;
 import com.yanshang.yilicai.lib.SlidingMenu;
 import com.yanshang.yilicai.lib.app.SlidingFragmentActivity;
 
@@ -69,7 +69,7 @@ public class MenuActivity extends SlidingFragmentActivity implements ScreenState
         super.onCreate(savedInstanceState);
 //        forceShowActionBarOverflowMenu();
 //        initNFC();
-        PushAgent.getInstance(this).onAppStart();
+//        PushAgent.getInstance(this).onAppStart();
         FlashApplication.getInstance().setActivity(this);
         FlashApplication.getInstance().addStackActivity(this);
         isRunning = true;

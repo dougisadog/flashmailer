@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 import com.doug.component.bean.MainAD;
 import com.doug.component.cache.CacheBean;
 import com.doug.component.utils.ImageUtils;
@@ -64,7 +64,7 @@ public class AtyMainAD extends KJActivity implements OnClickListener {
 			goToNextView(false);
 		}
 		else {
-			Glide.with(this).load(new File(filePath)).into(ad);
+			Picasso.with(this).load(new File(filePath)).into(ad);
 		}
 	}
 

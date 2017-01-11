@@ -19,7 +19,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ImageView.ScaleType;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 import com.doug.AppConstants;
 import com.doug.component.adapter.ViewHolder.MyClickHandler;
 import com.doug.component.bean.ADCycleItem;
@@ -103,7 +103,7 @@ public abstract class SlideAdapter<T> extends BaseAdapter {
 			public void displayImage(final CycleData cycleData, final ADCycleItem adCycleItem) {
 				//TODO 修正图片显示
 				adCycleItem.getImageView().setScaleType(ScaleType.FIT_XY);
-				Glide.with(context).load(cycleData.getUrl()).into(adCycleItem.getImageView());
+				Picasso.with(context).load(cycleData.getUrl()).into(adCycleItem.getImageView());
 			}
 		});
 		cycleView.startImageTimerTask();

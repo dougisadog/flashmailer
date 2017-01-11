@@ -3,8 +3,7 @@ package com.doug.component.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.squareup.picasso.Picasso;
 import com.doug.component.bean.CItem;
 import com.doug.component.widget.ZoomImageView;
 import com.doug.component.widget.ZoomImageView.LongPressCallBack;
@@ -54,7 +53,7 @@ public class ImagePagerAdapter extends PagerAdapter{
 					longClickCallBack.longClick(position);
 			}
 		});
-		Glide.with(context).load(items.get(position).getValue())
+		Picasso.with(context).load(items.get(position).getValue())
 	    .placeholder(R.drawable.empty).into(imageView);
 		((ViewPager) container).addView(v, 0);
 		v.setOnLongClickListener(new OnLongClickListener() {

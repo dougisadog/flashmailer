@@ -13,7 +13,7 @@ import org.json.JSONObject;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.utils.DistanceUtil;
 import com.baidu.tts.BaiduTTSManager;
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 import com.doug.AppConstants;
 import com.doug.component.bean.ADCycleItem;
 import com.doug.component.bean.CycleData;
@@ -260,7 +260,7 @@ public class AtyHome extends MenuActivity {
 			public void displayImage(final CycleData cycleData, final ADCycleItem adCycleItem) {
 				//TODO 修正图片显示
 				adCycleItem.getImageView().setScaleType(ScaleType.FIT_XY);
-				Glide.with(AtyHome.this).load(cycleData.getUrl()).into(adCycleItem.getImageView());
+				Picasso.with(AtyHome.this).load(cycleData.getUrl()).into(adCycleItem.getImageView());
 			}
 		});
 		cycleView.startImageTimerTask();

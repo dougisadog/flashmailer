@@ -17,15 +17,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import cn.smssdk.EventHandler;
-import cn.smssdk.OnSendMessageHandler;
-import cn.smssdk.SMSSDK;
+//import cn.smssdk.EventHandler;
+//import cn.smssdk.OnSendMessageHandler;
+//import cn.smssdk.SMSSDK;
 
 import com.doug.AppConstants;
 import com.doug.component.support.InfoManager;
 import com.doug.component.support.UIHelper;
 import com.doug.component.support.InfoManager.TaskCallBack;
-import com.doug.component.support.MopMessageManager;
+//import com.doug.component.support.MopMessageManager;
 import com.doug.flashmailer.R;
 import com.louding.frame.KJActivity;
 import com.louding.frame.KJDB;
@@ -74,28 +74,28 @@ public class SignupActivity extends KJActivity {
 	private KJDB kjdb;
 	private String currentCode;
 	
-	private EventHandler eh = new EventHandler(){
-
-		@Override
-		public void afterEvent(int event, int result, Object data) {
-			System.out.println(data.toString());
-
-		   if (result == SMSSDK.RESULT_COMPLETE) {
-			//回调完成
-			if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
-
-            //提交验证码成功
-			}else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE){
-				
-		    //获取验证码成功
-			}else if (event ==SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES){
-            //返回支持发送验证码的国家列表
-            } 
-          }else{                                                                 
-             ((Throwable)data).printStackTrace(); 
-      }
-  } 
-}; 
+//	private EventHandler eh = new EventHandler(){
+//
+//		@Override
+//		public void afterEvent(int event, int result, Object data) {
+//			System.out.println(data.toString());
+//
+//		   if (result == SMSSDK.RESULT_COMPLETE) {
+//			//回调完成
+//			if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
+//
+//            //提交验证码成功
+//			}else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE){
+//				
+//		    //获取验证码成功
+//			}else if (event ==SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES){
+//            //返回支持发送验证码的国家列表
+//            } 
+//          }else{                                                                 
+//             ((Throwable)data).printStackTrace(); 
+//      }
+//  } 
+//}; 
 
 	@Override
 	public void setRootView() {
@@ -106,10 +106,10 @@ public class SignupActivity extends KJActivity {
 	@Override
 	public void initData() {
 		super.initData();
-		String[] country = MopMessageManager.getInstance().getCurrentCountry();
-		if (country != null) {
-			currentCode = country[1];
-		}
+//		String[] country = MopMessageManager.getInstance().getCurrentCountry();
+//		if (country != null) {
+//			currentCode = country[1];
+//		}
 		
 		hascode = false;
 		sid = "";
@@ -121,12 +121,12 @@ public class SignupActivity extends KJActivity {
 	
 
 	public void onResume() {
-		SMSSDK.registerEventHandler(eh);
+//		SMSSDK.registerEventHandler(eh);
 		super.onResume();
 	}
 
 	public void onDestroy() {
-		SMSSDK.unregisterEventHandler(eh);
+//		SMSSDK.unregisterEventHandler(eh);
 		super.onDestroy();
 	}
 
@@ -276,22 +276,22 @@ public class SignupActivity extends KJActivity {
 	{
 		out.println("My: 获取手机验证码");
 		
-		SMSSDK.getVerificationCode(currentCode, tel, new OnSendMessageHandler() {
-			
-			@Override
-			public boolean onSendMessage(String arg0, String arg1) {
-						runOnUiThread(new Runnable() {
-							public void run() {
-								out.println("My: 获取手机验证码成功");
-								mHint.setVisibility(View.VISIBLE);
-								mHint.setText(R.string.signup_code_success);
-								hascode = true;
-								buttonHandle.post(buttonControl);
-							}
-						});
-				return false;
-			}
-		});
+//		SMSSDK.getVerificationCode(currentCode, tel, new OnSendMessageHandler() {
+//			
+//			@Override
+//			public boolean onSendMessage(String arg0, String arg1) {
+//						runOnUiThread(new Runnable() {
+//							public void run() {
+//								out.println("My: 获取手机验证码成功");
+//								mHint.setVisibility(View.VISIBLE);
+//								mHint.setText(R.string.signup_code_success);
+//								hascode = true;
+//								buttonHandle.post(buttonControl);
+//							}
+//						});
+//				return false;
+//			}
+//		});
 		
 	}
 

@@ -3,15 +3,19 @@ package com.doug;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.alibaba.sdk.android.push.CloudPushService;
+import com.alibaba.sdk.android.push.CommonCallback;
+import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.tts.BaiduTTSManager;
+import com.doug.component.cache.CacheBean;
 import com.doug.component.error.ErrLogManager;
 import com.doug.component.service.LocationService;
 import com.doug.component.support.AppActivityLifecycleCallbacks;
 import com.doug.component.support.CrashHandler;
-import com.doug.component.support.MopMessageManager;
+//import com.doug.component.support.MopMessageManager;
 import com.doug.component.support.ScreenObserver;
-import com.doug.component.utils.UILImageLoader;
+import com.doug.component.utils.PicassoImageLoader;
 import com.qiyukf.unicorn.api.SavePowerConfig;
 import com.qiyukf.unicorn.api.StatusBarNotificationConfig;
 import com.qiyukf.unicorn.api.Unicorn;
@@ -21,14 +25,14 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.app.Service;
+import android.content.Context;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
+import android.util.Log;
 import android.webkit.WebView;
 import android.widget.Toast;
-import cn.smssdk.EventHandler;
-import cn.smssdk.SMSSDK;
 
 @SuppressLint("NewApi")
 public class FlashApplication extends Application {
@@ -38,21 +42,23 @@ public class FlashApplication extends Application {
 
 	@Override
 	public void onCreate() {
+		//拆分dex
 		super.onCreate();
+		instance = this;
 		CrashHandler crashHandler = CrashHandler.getInstance();
 		crashHandler.init(getApplicationContext());
 		
 		//百度语音
 		BaiduTTSManager.getInstance().init(getApplicationContext());
 		// 网易旗鱼
-		Unicorn.init(this, "868207d1fde8fc48fd94eccd94cb5cb7", options(), new UILImageLoader());
+		Unicorn.init(this, "868207d1fde8fc48fd94eccd94cb5cb7", options(), new PicassoImageLoader());
 		
 		//百度地图
         locationService = new LocationService(getApplicationContext());
         mVibrator =(Vibrator)getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
         SDKInitializer.initialize(getApplicationContext()); 
 
-		instance = this;
+		
 		ErrLogManager.registerHandler();
 		if (Build.VERSION.SDK_INT >= 14) {
 			registerActivityLifecycleCallbacks(new AppActivityLifecycleCallbacks());
@@ -63,14 +69,17 @@ public class FlashApplication extends Application {
 		} 
 
 		// 推送消息SDK 初始化
-		UmengManager.getInstance().initPushInfo(this);
+//		UmengManager.getInstance().initPushInfo(this);
 		//false 正式 true 集成测试
-//		UmengManager.getInstance().initAnalytics(this, true);
+		UmengManager.getInstance().initAnalytics(this, true);
 //		String info = UmengManager.getDeviceInfo(this);
 //		AnnotateUtil.writeErr(info);
 		
 		//短信API
-		MopMessageManager.getInstance().init(this);
+//		MopMessageManager.getInstance().init(this);
+		
+		//初始化阿里推送
+		initCloudChannel(this);
 		// 监听屏幕
 		observer = new ScreenObserver();
 
@@ -81,6 +90,29 @@ public class FlashApplication extends Application {
 	        options.statusBarNotificationConfig = new StatusBarNotificationConfig();
 	        options.savePowerConfig = new SavePowerConfig();
 	        return options;
+	}
+	   
+	private static final String TAG = "Init";
+	/**
+	 * 初始化云推送通道
+	 * 
+	 * @param applicationContext
+	 */
+	private void initCloudChannel(Context applicationContext) {
+		PushServiceFactory.init(applicationContext);
+		final CloudPushService pushService = PushServiceFactory.getCloudPushService();
+		pushService.register(applicationContext, new CommonCallback() {
+			@Override
+			public void onSuccess(String response) {
+				CacheBean.getInstance().setToken(pushService.getDeviceId());
+				Log.d(TAG, "init cloudchannel success");
+			}
+			@Override
+			public void onFailed(String errorCode, String errorMessage) {
+				Log.d(TAG, "init cloudchannel failed -- errorcode:" + errorCode
+						+ " -- errorMessage:" + errorMessage);
+			}
+		});
 	}
 
 

@@ -10,12 +10,12 @@ import java.util.Map.Entry;
 import com.doug.component.bean.database.UPushMessage;
 import com.doug.component.cache.CacheBean;
 import com.louding.frame.KJDB;
-import com.umeng.analytics.MobclickAgent;
-import com.umeng.analytics.MobclickAgent.UMAnalyticsConfig;
-import com.umeng.message.IUmengRegisterCallback;
-import com.umeng.message.PushAgent;
-import com.umeng.message.UmengNotificationClickHandler;
-import com.umeng.message.entity.UMessage;
+//import com.umeng.analytics.MobclickAgent;
+//import com.umeng.analytics.MobclickAgent.UMAnalyticsConfig;
+//import com.umeng.message.IUmengRegisterCallback;
+//import com.umeng.message.PushAgent;
+//import com.umeng.message.UmengNotificationClickHandler;
+//import com.umeng.message.entity.UMessage;
 
 import android.Manifest.permission;
 import android.annotation.SuppressLint;
@@ -39,27 +39,27 @@ public class UmengManager {
 	}
 
 	public void initPushInfo(Context context) {
-		PushAgent mPushAgent = PushAgent.getInstance(context);
-		mPushAgent.setNotificaitonOnForeground(true);
-		// 注册推送服务，每次调用register方法都会回调该接口
-		mPushAgent.register(new IUmengRegisterCallback() {
-
-			@Override
-			public void onSuccess(String deviceToken) {
-				// 注册成功会返回device token
-				CacheBean.getInstance().setToken(deviceToken);
-				System.out.println("设备token:" + deviceToken);
-			}
-
-			@Override
-			public void onFailure(String s, String s1) {
-				System.out.println("推送消息注册失败" + s + "####" + s1);
-
-			}
-		});
+//		PushAgent mPushAgent = PushAgent.getInstance(context);
+//		mPushAgent.setNotificaitonOnForeground(true);
+//		// 注册推送服务，每次调用register方法都会回调该接口
+//		mPushAgent.register(new IUmengRegisterCallback() {
+//
+//			@Override
+//			public void onSuccess(String deviceToken) {
+//				// 注册成功会返回device token
+////				CacheBean.getInstance().setToken(deviceToken);
+//				System.out.println("设备token:" + deviceToken);
+//			}
+//
+//			@Override
+//			public void onFailure(String s, String s1) {
+//				System.out.println("推送消息注册失败" + s + "####" + s1);
+//
+//			}
+//		});
 		// 完全自定义处理推送
 //		 mPushAgent.setPushIntentServiceClass(MyPushIntentService.class);
-		mPushAgent.setPushIntentServiceClass(null);
+//		mPushAgent.setPushIntentServiceClass(null);
 
 		// umeng 后台配置自定义信息时的处理
 //		UmengNotificationClickHandler notificationClickHandler = new UmengNotificationClickHandler() {
@@ -109,26 +109,26 @@ public class UmengManager {
 	 *            true 开启debug集成测试
 	 */
 	public void initAnalytics(Context context, boolean debug) {
-		if (debug) {
-			MobclickAgent.setDebugMode(true);
-		}
-		MobclickAgent.openActivityDurationTrack(false);
-		ApplicationInfo appInfo;
-		try {
-			appInfo = context.getPackageManager().getApplicationInfo(
-					context.getPackageName(), PackageManager.GET_META_DATA);
-			String appKey = appInfo.metaData.getString("UMENG_APPKEY", "");
-			String channel = appInfo.metaData.getString("UMENG_CHANNEL", "")
-					.toUpperCase();
-			MobclickAgent.startWithConfigure(
-					new UMAnalyticsConfig(context, appKey, channel));
-			analyticsStatus = AnalyticsOn;
-			// 关闭Umeng异常捕获
-			MobclickAgent.setCatchUncaughtExceptions(false);
-		} catch (NameNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		if (debug) {
+//			MobclickAgent.setDebugMode(true);
+//		}
+//		MobclickAgent.openActivityDurationTrack(false);
+//		ApplicationInfo appInfo;
+//		try {
+//			appInfo = context.getPackageManager().getApplicationInfo(
+//					context.getPackageName(), PackageManager.GET_META_DATA);
+//			String appKey = appInfo.metaData.getString("UMENG_APPKEY", "");
+//			String channel = appInfo.metaData.getString("UMENG_CHANNEL", "")
+//					.toUpperCase();
+//			MobclickAgent.startWithConfigure(
+//					new UMAnalyticsConfig(context, appKey, channel));
+//			analyticsStatus = AnalyticsOn;
+//			// 关闭Umeng异常捕获
+//			MobclickAgent.setCatchUncaughtExceptions(false);
+//		} catch (NameNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
 	public static boolean checkPermission(Context context, String permission) {

@@ -3,17 +3,14 @@ package com.doug.component.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 import com.doug.component.bean.CItem;
 import com.doug.flashmailer.R;
-import com.louding.frame.utils.DensityUtils;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -94,7 +91,7 @@ public class ImageGridAdapter extends BaseAdapter {
         ll.setBackgroundResource("1".equals(item.getId()) ? R.drawable.bg_btn_dialog_p : R.drawable.bg_btn_dialog);
         viewTag.mName.setText(item.getName());
         viewTag.mIcon.setScaleType(ScaleType.FIT_CENTER);
-        Glide.with(mContext).load(item.getValue()).placeholder(R.drawable.empty).into(viewTag.mIcon);
+        Picasso.with(mContext).load(item.getValue()).placeholder(R.drawable.empty).into(viewTag.mIcon);
 //        convertView.setLayoutParams(params);
         return convertView;  
     }  

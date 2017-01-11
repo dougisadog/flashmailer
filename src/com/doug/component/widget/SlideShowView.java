@@ -27,7 +27,7 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 import com.doug.AppConstants;
 import com.doug.flashmailer.R;
 import com.louding.frame.KJHttp;
@@ -205,7 +205,7 @@ public class SlideShowView extends FrameLayout {
 //					context.startActivity(intent);
 				}
 			});
-			Glide.with(context).load(imageUrls.get(position)).placeholder(R.drawable.image_default).into(imageView);
+			Picasso.with(context).load(imageUrls.get(position)).placeholder(R.drawable.image_default).into(imageView);
 
 			((ViewPager) container).addView(imageViewsList.get(position));
 			return imageViewsList.get(position);

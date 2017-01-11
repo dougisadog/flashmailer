@@ -2,7 +2,7 @@ package com.doug.component.ui;
 
 import com.doug.component.cache.CacheBean;
 import com.doug.component.support.UIHelper;
-import com.doug.component.support.mail.Mail;
+//import com.doug.component.support.mail.Mail;
 import com.doug.component.utils.KeyboardUitls;
 import com.doug.flashmailer.R;
 import com.louding.frame.KJActivity;
@@ -65,7 +65,7 @@ public class AtyReport extends KJActivity {
         protected String doInBackground(String... params) {  
             Log.i(TAG, "doInBackground(Params... params) called");  
             try {  
-            	Mail.sendMsg("developer@xiaomanjf.com", CacheBean.getInstance().getUser().getPhone(), params[0], AtyReport.this);
+//            	Mail.sendMsg("developer@xiaomanjf.com", CacheBean.getInstance().getUser().getPhone(), params[0], AtyReport.this);
             } catch (Exception e) {  
                 Log.e(TAG, e.getMessage());  
             }  
