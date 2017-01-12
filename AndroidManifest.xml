@@ -378,6 +378,12 @@
     </intent-filter>
 </receiver>
 
+        <!-- 高德地图 -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="5fe021296a0f49ce1d4d55dba5baf582"/>
+        
+        <service android:name="com.doug.component.support.service.CycleRequestService" /> 
     </application>
 
 </manifest>

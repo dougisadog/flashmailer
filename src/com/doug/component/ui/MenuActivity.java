@@ -5,6 +5,9 @@ import java.util.List;
 import com.doug.AppVariables;
 import com.doug.FlashApplication;
 import com.doug.component.support.ScreenObserver.ScreenStateListener;
+import com.doug.component.support.service.CycleRequestService;
+import com.doug.component.utils.ServiceUtils;
+import com.doug.component.utils.ServiceUtils.ServiceIntentCallBack;
 import com.doug.flashmailer.R;
 import com.qiyukf.unicorn.api.ConsultSource;
 import com.qiyukf.unicorn.api.Unicorn;
@@ -100,6 +103,8 @@ public class MenuActivity extends SlidingFragmentActivity implements ScreenState
         findViewById(R.id.rlReport).setOnClickListener(onMenuClickListener);
         findViewById(R.id.rlAbout).setOnClickListener(onMenuClickListener);
         
+        //TODO DELETE
+        findViewById(R.id.rlService).setOnClickListener(onMenuClickListener);
         
 		SlidingMenu sm = getSlidingMenu();
 		sm.setShadowWidthRes(R.dimen.shadow_width);
@@ -184,6 +189,15 @@ public class MenuActivity extends SlidingFragmentActivity implements ScreenState
 					break;
 				case R.id.rlAbout: //关于我们
 					startActivity(new Intent(MenuActivity.this, AtyAbout.class));
+					break;
+					//TODO DELETE
+				case R.id.rlService: //关于我们
+					ServiceUtils.checkService(MenuActivity.this, CycleRequestService.class,
+							new ServiceIntentCallBack() {
+						@Override
+						public void setServiceIntent(Intent intent) {
+						}
+					});
 					break;
 					
 			}

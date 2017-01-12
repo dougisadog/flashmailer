@@ -11,6 +11,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.navi.BaiduMapAppNotSupportNaviException;
+import com.baidu.mapapi.navi.BaiduMapNavigation;
+import com.baidu.mapapi.navi.NaviParaOption;
+import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.utils.DistanceUtil;
 import com.baidu.tts.BaiduTTSManager;
 import com.squareup.picasso.Picasso;
@@ -31,6 +35,8 @@ import com.louding.frame.http.HttpCallBack;
 import com.louding.frame.http.HttpParams;
 import com.louding.frame.utils.StringUtils;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -71,7 +77,7 @@ public class AtyHome extends MenuActivity {
 	private LatLng fromLocation;
 	private LatLng toLocation;
 	
-	private TextView mPrice, mDetail;
+	private TextView mPrice, mDetail, btnNext;
 	private RelativeLayout rlResult;
 	
 
@@ -115,6 +121,9 @@ public class AtyHome extends MenuActivity {
 		
 		orderWeight = getResources().getStringArray(R.array.orderWeight);
 		adContainer = (LinearLayout) findViewById(R.id.adContainer);
+		
+		btnNext = (TextView) findViewById(R.id.btnNext);
+		btnNext.setOnClickListener(listener);
 		
 		int width = ApplicationUtil.getApkInfo(this).width;
 		adHeight = (int) (width /AppConstants.BANNER_SCALE);
@@ -219,6 +228,9 @@ public class AtyHome extends MenuActivity {
 							}
 						}, "取件时间", "", true, 3);
 					dialogWheel.showDialog(getSupportFragmentManager());
+					break;
+				case R.id.btnNext :   //预约时间
+					openBaiduMap();
 					break;
 				default :
 					break;
@@ -373,6 +385,7 @@ public class AtyHome extends MenuActivity {
 		double la = intent.getDoubleExtra("locationLatitude", 0);
 		double lo = intent.getDoubleExtra("locationLongitude", 0);
 		switch (req) {
+			//城市选择返回
 		case 1000:
 			String cityName = intent.getStringExtra("city");
 			if (!StringUtils.isEmpty(cityName)) {
@@ -380,6 +393,7 @@ public class AtyHome extends MenuActivity {
 				city.setText(cityName);
 			}
 			break;
+			//起始地点选择返回
 		case 999:
 			String from = intent.getStringExtra("finalResult");
 			if (!StringUtils.isEmpty(from) && la != 0 && lo != 0) {
@@ -388,6 +402,7 @@ public class AtyHome extends MenuActivity {
 				refreshResult();
 			}
 			break;
+			//终止地点选择返回
 		case 998:
 			String to = intent.getStringExtra("finalResult");
 			if (!StringUtils.isEmpty(to) && la != 0 && lo != 0) {
@@ -414,6 +429,44 @@ public class AtyHome extends MenuActivity {
 	@Override
 	public void finish() {
 		super.finish();
+	}
+	
+	private void openBaiduMap() {
+		final NaviParaOption para = new NaviParaOption();
+		para.startPoint(fromLocation);
+		para.startName(txtFrom.getText().toString());
+		para.endPoint(toLocation);
+		para.endName(txtTo.getText().toString());
+
+		try {
+
+			BaiduMapNavigation.openBaiduMapNavi(para, this);
+
+		} catch (BaiduMapAppNotSupportNaviException e) {
+			e.printStackTrace();
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("您尚未安装百度地图app或app版本过低，点击确认安装？");
+			builder.setTitle("提示");
+			builder.setPositiveButton("确认",
+					new android.content.DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+							BaiduMapNavigation.openBaiduMapBikeNavi(para,
+									AtyHome.this);
+						}
+					});
+
+			builder.setNegativeButton("取消",
+					new android.content.DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+						}
+					});
+
+			builder.create().show();
+		}
 	}
 
 
