@@ -192,12 +192,7 @@ public class MenuActivity extends SlidingFragmentActivity implements ScreenState
 					break;
 					//TODO DELETE
 				case R.id.rlService: //关于我们
-					ServiceUtils.checkService(MenuActivity.this, CycleRequestService.class,
-							new ServiceIntentCallBack() {
-						@Override
-						public void setServiceIntent(Intent intent) {
-						}
-					});
+					startActivity(new Intent(MenuActivity.this, AtyCycleService.class));
 					break;
 					
 			}

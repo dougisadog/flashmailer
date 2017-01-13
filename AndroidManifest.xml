@@ -347,7 +347,9 @@
             </intent-filter>
         </service>
         
-        <receiver android:name="com.alibaba.sdk.android.push.MessageReceiver">
+        <!--  com.doug.component.receiver.ALIPushMessageRecevier
+        com.alibaba.sdk.android.push.MessageReceiver -->
+        <receiver android:name="com.doug.component.receiver.ALIPushMessageRecevier">
     <intent-filter>
         <action android:name="com.alibaba.push2.action.NOTIFICATION_OPENED"/>
     </intent-filter>
@@ -383,6 +385,10 @@
             android:name="com.amap.api.v2.apikey"
             android:value="5fe021296a0f49ce1d4d55dba5baf582"/>
         
+               <activity
+            android:name="com.doug.component.ui.AtyCycleService"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
         <service android:name="com.doug.component.support.service.CycleRequestService" /> 
     </application>
 

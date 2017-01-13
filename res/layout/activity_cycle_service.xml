@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+        <LinearLayout
+        android:id="@+id/headLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/header" />
+    </LinearLayout>
+    
+         <TextView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/page_line_btn"
+            android:layout_marginLeft = "30dp"
+            android:layout_marginRight = "30dp"
+            
+            android:gravity="center"
+            android:text="content"
+            android:textColor="@color/black_v2"
+            android:textSize="@dimen/font_app" />
+    
+        <TextView
+            android:id="@+id/btnStart"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/page_line_btn"
+            android:layout_marginLeft = "30dp"
+            android:layout_marginRight = "30dp"
+            
+            android:background="@drawable/btn_blue"
+            android:gravity="center"
+            android:text="btnStart"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_app" />
+        
+                <TextView
+            android:id="@+id/btnStop"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/page_line_btn"
+            android:layout_marginLeft = "30dp"
+            android:layout_marginRight = "30dp"
+            
+            android:background="@drawable/btn_blue"
+            android:gravity="center"
+            android:text="btnStop"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_app" />
+    
+</LinearLayout>
